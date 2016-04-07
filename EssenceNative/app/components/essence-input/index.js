@@ -24,7 +24,8 @@ const INPUT_TYPE = {
 const DEFAULT_HEIGHT = 48;
 const SIZE = {
   BORDER_RADIUS: 4,
-  INPUT_MARGIN_BOTTOM: 10
+  INPUT_MARGIN_BOTTOM: 10,
+  INPUT_HORIZONTAL_MARGIN: 40
 }
 const TEXT = {
   fontWeight: '200'
@@ -64,6 +65,7 @@ class UiInput extends Component {
     this._eventer.remove();
    } */
 
+
   setValue(v) {
     if(this.value === v) return;
     this.value = v;
@@ -95,7 +97,7 @@ class UiInput extends Component {
   handleBlur() {
     if(!this.isFocused) return;
     this.props.onBlur && this.props.onBlur();
-    store.clearFocusedInput(this);
+    //store.clearFocusedInput(this);
     this.isFocused = false;
     this.refs.inputBg && this.refs.inputBg.setFocused(false);
   }
@@ -174,6 +176,13 @@ class UiInput extends Component {
       };
     }
 
+    setFocused(bVal) {
+      if(this.state.isFocused === bVal) return;
+      this.setState({
+        isFocused: bVal
+      });
+    }
+
     render() {
       let mainColor = 'white';
       let height = this.props.height;
@@ -187,17 +196,19 @@ class UiInput extends Component {
         width: this.props.width,
         height,
         backgroundColor: mainColor,
-        borderBottomColor: 'green'
+        borderBottomWidth: 1,
+        borderBottomColor: '#009587'
+
       };
 
       return (
         <View style={[styles.bgBox, boxStyle]}>
           <View style={[styles.bordertop, {
-              left: 2,
+             left: 2,
               width: this.props.width - 6,
-              backgroundColor: 'white',
-              borderBottomWidth: 1,
-              borderBottomColor: 'green'
+              backgroundColor: 'red',
+
+
             }]}/>
           <View style={[styles.borderTop, {
               left: 1,
@@ -211,21 +222,23 @@ class UiInput extends Component {
 
 const styles = StyleSheet.create({
   bgBox: {
-    borderRadius: SIZE.BORDER_RADIUS,
-    borderWidth: 0.5,
+  //  borderRadius: SIZE.BORDER_RADIUS,
     position: 'absolute',
     left: 0,
     right: 0,
-    top: 0
+    top: 0,
+
+
   },
   box: {
     overflow: 'hidden',
     alignSelf: 'center',
-    marginBottom: SIZE.INPUT_MARGIN_BOTTOM
+    marginBottom: SIZE.INPUT_MARGIN_BOTTOM,
+
   },
   base: {
     fontSize: 19,
-  //  color: colors['e-text-amber-600'],
+    // color: colors['e-text-amber-600'],
     // paddingTop: 2,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent'

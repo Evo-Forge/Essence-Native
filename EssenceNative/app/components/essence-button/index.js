@@ -45,7 +45,7 @@ class UiButton extends Component {
     //  disabled: false,
       text: 'Button',
       elevation: 5,
-      type: 'primary'
+      type: 'DEFAULT'
 
     };
 

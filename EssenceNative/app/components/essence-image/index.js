@@ -68,8 +68,8 @@ class UiImages extends React.Component {
     let imgSrc = this.props.source,
       source, imgStyle;
 
-  /*  if (imgSrc.substr(0, 7) === 'assets/') {
-      source === [imgSrc];                         // NEEDS OBJECT HERE
+    if (imgSrc.substr(0, 7) === 'images/') {
+      source === IMAGES[imgSrc];                         // NEEDS OBJECT HERE
     } else {
       source = {
         uri: imgSrc
@@ -77,13 +77,13 @@ class UiImages extends React.Component {
     }
     if (imgSrc.substr(0, 10) === 'data:image' || imgSrc.indexOf('file:') !== -1) {
       source.isStatic = true;
-    } */
+    }
     let imgWidth = this.state.width || this.props.width,
       imgHeight = this.state.height || this.props.height;
     if (source.isStatic || imgSrc.indexOf('http') === 0) {
       imgStyle = {
         width: imgWidth,
-        height: imgHeigh
+        height: imgHeight
       };
     }
     if(!this.props.animated) {
@@ -93,7 +93,7 @@ class UiImages extends React.Component {
           height={imgHeight}
           width={imgWidth}
           source={source}
-          style={[style.image, imgStyle, this.props.style]} />
+          style={[styles.image, imgStyle, this.props.style]} />
       )
     }
     let animStyle = {
@@ -112,5 +112,13 @@ class UiImages extends React.Component {
     );
 	}
 }
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    borderWidth: 0,
+    backgroundColor: 'transparent'
+  }
+})
 
 module.exports = UiImages;

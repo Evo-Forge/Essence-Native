@@ -44,7 +44,7 @@ const {
       super(props);
       this.state = {
         size: 10,
-        isActive: 10
+        isActive: false
       };
     }
 
@@ -111,7 +111,7 @@ const {
         };
       }
       let innerView;
-      if( typeof [iconName] !== 'undefined') {            //NEEDS THE ICONNAME OBJECT/MODULE
+      if( typeof [iconName] !== 'undefined') {            //NEEDS THE ICON NAME OBJECT/MODULE
         iconName = [iconName];
         iconStyle.fontFamily = '';
         iconStyle.fontSize = this.state.size;
@@ -139,7 +139,27 @@ const {
   }
 
   const style = StyleSheet.create ({
-
+    icon: {
+      borderWidth: 0,
+      margin: 0,
+      padding: 0,
+      textAlign: 'center',
+      fontWeight: '100'
+    },
+    fontIcon: {
+      margin: 0,
+      padding: 0,
+      backgroundColor: 'transparent'
+    },
+    touch: {
+      backgroundColor: 'transparent',
+      left: -TOUCH_AREA_SIZE,
+      top: -TOUCH_AREA_SIZE,
+      paddingLeft: TOUCH_AREA_SIZE,
+      paddingTop: TOUCH_AREA_SIZE,
+      paddingRight: TOUCH_AREA_SIZE,
+      opacity: 1
+    }
   });
 
 module.exports = UiIcon;
