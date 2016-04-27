@@ -1,8 +1,8 @@
 
 const React = require('react-native');
-const helpers = require('../../styles/helpers');
-const colors = require('../../styles/colors');
-
+const helpers = require('../../constants/helpers');
+const colors = require('../../constants/colors');
+const Image = require('../essence-image/index');
 const TOUCH_AREA_SIZE = 12;
 // should have a file with all the icon names
 const {
@@ -67,13 +67,19 @@ const {
       e.stopPropagation();
     }
 
+    handlePressOut(e) {
+        this.setState({
+            isActive: false
+        });
+        e.stopPropagation();
+    }
     renderTouchable(subView) {
       if(!this.props.onPress) return subView;
       let size = this.state.size + TOUCH_AREA_SIZE * 2,
         localStyle = {
           width: size,
           height: size
-        }
+        };
         return (
           <TouchableHighlight
             activeOpacity={0.7}
@@ -102,7 +108,7 @@ const {
       let iconStyle = {};
       if(this.props.border !== false) {
         iconStyle = {
-          textShadowColor: colors['e-text-blue-400'],
+          textShadowColor: iconBorder,
           textShadowRadius: 1,
           textShadowOffset: {
             width: 0.5,
@@ -134,7 +140,7 @@ const {
     }
 
     render() {
-      return this.renderTouchable(this.render());
+      return this.renderTouchable(this.renderFont());
     }
   }
 

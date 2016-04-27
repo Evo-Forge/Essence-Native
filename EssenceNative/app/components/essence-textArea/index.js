@@ -1,225 +1,281 @@
 'use strict';
 
 const React = require('react-native');
-const helpers = require('../../styles/helpers');
-const colors = require('../../styles/colors');
+const helpers = require('../../constants/helpers');
+const colors = require('../../constants/colors');
 
 const {
-  Component,
-  StyleSheet,
-  View,
-  PropTypes,
-  Text,
-  Dimensions,
-  TextInput
-} = React;
+    Component,
+    StyleSheet,
+    View,
+    PropTypes,
+    Dimensions,
+    Text,
+    TextInput,
+    Animated,
+    TouchableHighlight
+    } = React;
 
-const DEFAULT_HEIGHT = 48;
+// only works properly for android
+// remember to set backgroundColor to white
 
 const SIZE = {
-  BORDER_RADIUS: 4,
-  INPUT_HORIZONTAL_MARGIN: 40,
-  INPUT_MARGIN_BOTTOM: 10
+    BORDER_RADIUS: 4,
+    INPUT_MARGIN_BOTTOM: 10,
+    INPUT_HORIZONTAL_MARGIN: 40
 };
+
 class UiTextArea extends Component {
-
-  constructor(props) {
-    super(props);
-    this.value = this.props.value || '';
-    this.isFocused = false;
-  }
-
-  static propTypes = {
-    name: PropTypes.string,
-    value: PropTypes.any,
-    placehodler: PropTypes.string,
-    multiline: PropTypes.bool,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onSubmit: PropTypes.func
-
-  };
-
-  static defaultProps = {
-
-    placeholder: "textarea"
-
-  };
-
-  setValue(v) {
-    if(this.value === v) return;
-    this.value = v;
-    if(v == '') {
-      this.input && this.input.clear()
-    }
-  }
-
-  getValue() {
-    return this.value;
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return false
-  }
-
-  handleFocus() {
-    this.props.onFocus && this.props.onFocus();
-    this.isFocused = true;
-    this.refs.inputBg && this.refs.inputBg.setFocused(true);
-  }
-
-  handleEndEdit() {
-    if(!this.isFocused) return;
-    this.handleBlur();
-    this.input && this.input.blur();
-  }
-
-  handleBlur() {
-    if(!this.isFocused) return;
-    this.props.onBlur && this.props.onBlur();
-    this.isFocued = false;
-    this.refs.inputBg && this.refs.inputBg.setFocued(false);
-  }
-
-
-  handleSubmit() {
-    this.props.onSubmit && this.props.onSubmit(this.value);
-  }
-    render() {
-      let { width } = Dimensions.get('window');
-      width = width - SIZE.INPUT_HORIZONTAL_MARGIN;
-      let height = this.props.height || DEFAULT_HEIGHT;
-      let mainColor = colors['e-text-amber-50'],
-        placeholderColor = colors['e-text-blue-50'];
-      const textStyle = {};
-      if(this.props.height) {
-        textStyle.height = this.props.height;
-      }  else {
-        textStyle.height = DEFAULT_HEIGHT;
-      }
-      let boxStyle = {
-        width,
-        height
-      };
-
-    return (
-      <View style={[styles.box, boxStyle]}>
-        <UiTextAreaBackground
-          height={height}
-          width={width}
-          ref='inputBg'
-        />
-        <View style={styles.container}>
-          <TextInput
-            ref={(obj) => { this.input = obj; }}
-            placeholder={this.props.placeholder}
-            multiline={this.props.multiline}
-            width={this.props.width}
-            height={this.props.height}
-            value={this.props.value}
-            defaultValue={this.value}
-            style={[styles.base, textStyle]}
-            underLineColorAndroid="transparent"
-            onKeyPress={this.props.onKeyPress}
-            onFocus={this.handleFocus.bind(this)}
-            onBlur={this.handleBlur.bind(this)}
-            onEndEditing={this.handleEndEdit.bind(this)}
-            onSubmitEditing={this.handleEndEdit.bind(this)}
-            onSubmit={this.handleSubmit.bind(this)}
-            />
-        </View>
-      </View>
-    )
-  }
-}
-
-class UiTextAreaBackground extends Component {
-
     static propTypes = {
-      height: PropTypes.number,
-      width: PropTypes.number
+        name: PropTypes.string,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        placeholder: PropTypes.string,
+        value: PropTypes.any,
+        labelText: PropTypes.string
     };
 
-    constructor(props){
-      super(props);
-      this.state = {
-        isFocused: false
-      };
+    static defaultProps = {
+        labelText: 'Label',
+        numberOfLines: 1
+    };
+
+    constructor(props) {
+        super(props);
+        this.value = this.props.value || '';
+        this.isFocused = false;
+        this.state = {
+            labelFocused: false,
+            borderVisible: false,
+            ts: Date.now()
+        };
+        this.animLabelFocus = new Animated.Value(1);
+        this.animLineWidthFocus = new Animated.Value(1);
+        this.animLineLeftFocus = new Animated.Value(1);
     }
 
-    setFocused(bVal) {
-      if(this.state.isFocused === bVal) return;
-      this.setState({
-        ifFocused: bVal
-      });
+    componentDidMount() {
+        if (this.value !== '') {
+            this.props.onChange && this.props.onChange(this.value);
+        }
+
     }
+
+    setValue(v) {
+        if (this.value === v) return;
+        this.value = v;
+        if (v == '') {
+            this.input && this.input.clear();
+        }
+        this.setState({
+            ts: Date.now()
+        });
+    }
+
+    getValue() {
+        return this.value;
+    }
+
+    handleFocus() {
+        this.props.onFocus && this.props.onFocus();
+        this.isFocused = true;
+        this.refs.inputBg && this.refs.inputBg.setFocused(true);
+        this.focusLabel();
+        this.focusLine();
+    }
+
+    focusLine() {
+        this.setState({
+            borderVisible: true
+        });
+        // TODO anim focus line
+        Animated.parallel([
+            Animated.timing(this.animLineWidthFocus, {
+                toValue: 300,
+                duration: 500
+            }),
+            Animated.timing(this.animLineLeftFocus, {
+                toValue: 0,
+                duration: 500
+            })
+        ]).start()
+
+    }
+
+    unfocusLine() {
+        this.setState({
+            borderVisible: false
+        });
+        Animated.parallel([
+            Animated.timing(this.animLineWidthFocus, {
+                toValue: 0,
+                duration: 500
+            }),
+            Animated.timing(this.animLineLeftFocus, {
+                toValue: 145,
+                duration: 500
+            })
+        ]).start()
+    }
+
+    focusLabel() {
+        this.setState({
+            labelFocused: true
+        });
+        Animated.spring(this.animLabelFocus, {
+            toValue: -34,
+            bounciness: 5,
+            speed: 4
+        }).start();
+    }
+
+    unfocusLabel() {
+        if (this.value !== '') return;
+        this.setState({
+            labelFocused: false
+        });
+        Animated.spring(this.animLabelFocus, {
+            toValue: 0,
+            bounciness: 5,
+            speed: 4
+        }).start();
+    }
+
+    handleEndEdit() {
+        if (!this.isFocused) return;
+        this.handleBlur();
+        this.input && this.input.blur();
+    }
+
+    handleBlur() {
+        if (!this.isFocused) return;
+        this.props.onBlur && this.props.onBlur();
+        this.isFocused = false;
+        this.refs.inputBg && this.refs.inputBg.setFocused(false);
+        this.unfocusLabel();
+        this.unfocusLine();
+
+    }
+
+    handleChange(newValue) {
+        if (typeof newValue === 'string') {
+            this.value = newValue;
+        }
+        this.props.onChange && this.props.onChange(this.value);
+    }
+
+    handleSubmit() {
+        this.props.onSubmit && this.props.onSubmit(this.value);
+    }
+
+    renderLabel() {
+        let boxStyle, textStyle;
+        if (this.state.labelFocused) {
+            boxStyle = styles.labelBoxFocused;
+            textStyle = styles.labelTextFocused;
+        }
+        return (
+            <Animated.View style={[styles.labelBox, boxStyle, {transform: [{translateY: this.animLabelFocus}]}]}>
+                <TouchableHighlight onPress={this.focusLabel.bind(this)}>
+                    <Text style={[styles.labelText, textStyle]}>{this.props.label}</Text>
+                </TouchableHighlight>
+            </Animated.View>
+        )
+    }
+
+    renderLine(width) {
+        if (!this.state.borderVisible) return;
+        let localStyle = {
+            left: width / 2 - 15,
+            width: 30
+        };
+        return (
+            <Animated.View style={[localStyle, styles.bottomLine, {left: this.animLineLeftFocus, width: this.animLineWidthFocus}]}/>
+        )
+    }
+
     render() {
-      let mainColor = colors['e-text-cyan-50'];
-      let height = this.props.height;
-      if(React.Platform.OS === 'android') {
-        height += 4;
-      }
-      if(this.state.isFocused) {
-        mainColor = colors['e-text-deep-purple-50'];
-      }
-      let boxStyle = {
-        width: this.props.width,
-        height,
-        backgroundColor: colors['e-text-green-50'],
-        borderColor: colors['e-text-indigo-50']
-      };
-
-      return (
-        <View style={[styles.bgBox, boxStyle]}>
-          <View style={[styles.borderTop, {
-            left: 2,
-            width: this.props.width - 6,
-            backgroundColor: colors['e-text-deep-orange-50'],
-            borderBottomWidth: 1,
-            borderBottomColor: colors['e-text-light-blue-A100']
-          }]} />
-          <View style={[styles.borderTop, {
-            left: 1,
-            width: boxStyle.width - 4,
-            backgroundColor: colors['e-text-light-green-50']
-          }]} />
-        </View>
-      )
+        let { width } = Dimensions.get('window');
+        width = width - SIZE.INPUT_HORIZONTAL_MARGIN * 2;
+        let boxStyle = {
+            width
+        };
+        this.width = width;
+        return (
+            <View style={[styles.box, boxStyle]}>
+                <TextInput
+                    ref={(obj) => { this.input = obj;}}
+                    defaultValue={this.value}
+                    style={styles.textArea}
+                    placeholder={this.props.placeholder}
+                    keyboardType={'default'}
+                    multiline={false}
+                    numberOfLines={this.props.numberOfLines}
+                    onFocus={this.handleFocus.bind(this)}
+                    onBlur={this.handleBlur.bind(this)}
+                    onChangeText={this.handleChange.bind(this)}
+                    onEndEditing={this.handleEndEdit.bind(this)}
+                    onSubmitEditing={this.handleEndEdit.bind(this)}
+                    onChange={this.handleChange.bind(this)}
+                    onSubmit={this.handleSubmit.bind(this)}/>
+                {this.renderLabel()}
+                <View style={[styles.bottomBorder, {width}]}/>
+                {this.renderLine(width)}
+            </View>
+        )
     }
 }
- const styles = StyleSheet.create({
-   bgBox: {
-     borderRadius: SIZE.BORDER_RADIUS,
-     borderWidth: 0.5,
-     position: 'absolute',
-     left: 0,
-     right: 0,
-     top: 0
-   },
-   box: {
-     overflow: 'hidden',
-     alignSelf: 'center',
-     marginBottom: SIZE.INPUT_MARGIN_BOTTOM
-   },
-   base: {
-     fontSize: 15,
-     color: 'black',
-     // paddingTop: 2,
-     paddingHorizontal: 12,
-     justifyContent: 'flex-start',
-     backgroundColor: 'transparent'
-   },
-   borderTop: {
-     height: 1
-   },
-   borderBottom: {
-     position: 'absolute',
-     bottom: 0,
-     left: 3,
-     height: 5,
-     borderBottomWidth: 0.8
-   }
- });
+
+const styles = StyleSheet.create({
+    bgBox: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0
+    },
+    bottomLine: {
+        position: 'absolute',
+        bottom: 0.5,
+        height: 2,
+        backgroundColor: 'red'
+    },
+    bottomBorder: {
+        position: 'absolute',
+        left: 0,
+        bottom: 1,
+        height: 1,
+        backgroundColor: 'blue'
+    },
+    box: {
+        overflow: 'hidden',
+        alignSelf: 'center',
+        marginBottom: SIZE.INPUT_MARGIN_BOTTOM
+    },
+    textArea: {
+        marginTop: 24,
+        marginBottom: 1,
+        fontFamily: 'Roboto-Regular',
+        fontSize: 16,
+        paddingTop: 8,
+        paddingBottom: 2,
+        textAlignVertical: 'top',     // this doesn't work in IOS
+        backgroundColor: 'white'
+    },
+    labelBox: {
+        position: 'absolute',
+        top: 34,
+        left: 2,
+        paddingLeft: 4
+    },
+    labelBoxFocused: {
+     //   top: 1
+    },
+    labelText: {
+        color: '#c3c3c3'
+    },
+    labelTextFocused: {
+        color: 'blue'
+    }
+});
 
 module.exports = UiTextArea;

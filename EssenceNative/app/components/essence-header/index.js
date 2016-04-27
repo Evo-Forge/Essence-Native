@@ -1,8 +1,8 @@
 const React = require('react-native');
-const Icon = require('');
-const Text = require('');
-const BoldedText = require('');
-const colors = require();
+const Icon = require('../essence-icon/index');
+const text = require('../../styles/typography');
+//const BoldedText = require('');
+const colors = require('../../styles/colors');
 const {
   Component,
   StyleSheet,
@@ -12,7 +12,10 @@ const {
 } = React;
 
 const MAX_LENGTH = 20;
-const SIZE = {};
+
+const SIZE = {
+  HEADER_HEIGHT: 60
+};
 class UiHeader extends Component {
 
   static BOX_HEIGHT = SIZE.HEADER_HEIGHT;
@@ -25,19 +28,19 @@ class UiHeader extends Component {
     titleBolded: PropTypes.bool,
     titleColor: PropTypes.string,
     icon: PropTypes.string,
-    iconColor: PropTyoes.string,
+    iconColor: PropTypes.string,
     backgroundColor: PropTypes.any,
     border: PropTypes.bool,
     borderColor: PropTypes.string,
-    borderPosition: PropTypes.onOf(['bottom', 'top']),
+    borderPosition: PropTypes.oneOf(['bottom', 'top']),
     opacity: PropTypes.number
   };
 
   static defaultProps = {
-    titleColor: colors[''],
-    icoColor: colors[''],
-    backgroundColor: colors[''],
-    borderColor: colors[''],
+    titleColor: colors['e-text-blue-50'],
+    icoColor: colors['e-text-amber-700'],
+    backgroundColor: colors['e-text-amber-400'],
+    borderColor: colors['e-text-cyan-600'],
     opacity: 1
   };
 
@@ -48,7 +51,7 @@ class UiHeader extends Component {
     };
   }
   componentWillMount() {
-    this.props.onLoad && this.props.onLoad(Ui.Header.BOX_HEIGHT);
+    this.props.onLoad && this.props.onLoad(UiHeader.BOX_HEIGHT);
   }
 
   componentWillUnmount() {
@@ -72,16 +75,16 @@ class UiHeader extends Component {
     let textStyle = this.props.titleStyle || {};
     textStyle.color = titleColor;
     if(this.props.backgroundColor) {
-      textStyle.textShadowColor = colors[''];
+      textStyle.textShadowColor = colors['e-text-deep-orange-300'];
     }
     if(!this.props.titleBolded) {
       return (
         <Text style={[styles.title, textStyle]}>{title}</Text>
       )
     }
-    return (
+    /*return (
       <BoldedText style={[styles.title, textStyle]} text={title} />
-    );
+    );*/
   }
 
   renderIcon() {
@@ -110,7 +113,7 @@ class UiHeader extends Component {
       backgroundColor: this.props.backgroundColor
     };
     if(this.props.backgroundColor === 'false' || this.props.backgroundColor === false) {
-      delete wrapperSyle.backgroundColor;
+      delete wrapperStyle.backgroundColor;
     }
     if(this.props.opacity) {
       wrapperStyle.opacity = this.props.opacity;
@@ -118,7 +121,7 @@ class UiHeader extends Component {
     if(borderPosition === 'bottom') {
       borderStyle.bottom = 0;
       borderStyle.borderBottomWidth = 1;
-      borderStyle.borderBottomColor = colors[''];
+      borderStyle.borderBottomColor = colors['e-text-deep-orange-100'];
     } else {
       borderStyle.top = 0;
       borderStyle.borderTop.Width = 0;
@@ -160,13 +163,13 @@ class UiHeader extends Component {
       flexDirection: 'row',
       flexWrap: 'nowrap',
       justifyContent: 'center',
-      alignItem: 'center',
+      alignItems: 'center',
       paddingHorizontal: 5
     },
     title: {
       fontSize: 26,
       textShadowRadius: 1,
-      textShadowOffst: {
+      textShadowOffset: {
         width: 0.5,
         height: 0.5
       }

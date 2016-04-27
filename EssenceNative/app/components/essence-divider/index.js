@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react-native');
-const color = require('../../styles/colors')
+const color = require('../../constants/colors')
 
 const {
   Component,

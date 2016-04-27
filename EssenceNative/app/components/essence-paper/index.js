@@ -2,7 +2,7 @@
 
 const React = require('react-native');
 
-const colors = require('../../styles/colors');
+const colors = require('../../constants/colors');
 
 const {
   View,
@@ -16,7 +16,7 @@ const TYPES = {
   'default': 2,
   'sharp': 0,
   'circle': 50
-}
+};
 
 const BORDER_RADIUS = 2;
 class UiPaper extends Component {

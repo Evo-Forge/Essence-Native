@@ -1,9 +1,9 @@
 const React = require('react-native');
 
 
-const helpers = require('../../styles/helpers');
-const typography = require('../../styles/typography');
-const colors = require('../../styles/colors');
+const helpers = require('../../constants/helpers');
+const typography = require('../../constants/typography');
+const colors = require('../../constants/colors');
 const Divider = require('../essence-divider/index');
 const Button = require('../essence-button/index');
 
@@ -11,9 +11,9 @@ const {
 	View,
     Image,
     Text,
-		StyleSheet,
-		Component,
-		PropTypes
+	StyleSheet,
+	Component,
+	PropTypes
 } = React;
 
 
@@ -26,7 +26,8 @@ class Card extends Component {
 		height: PropTypes.number,
 		image: PropTypes.any,
 		size: PropTypes.number,
-		backgroundColor: PropTypes.string
+		backgroundColor: PropTypes.string,
+		backgroundImage: PropTypes.any
 	};
 
 	static defaultProps = {
@@ -46,45 +47,60 @@ class Card extends Component {
 			height: cardSize,
 			backgroundColor: this.props.backgroundColor,
 
-		}
+		};
 		return (
-			<View style={styles.contaier}>
+			<View style={styles.container}>
 				<View style={styles.headerContainer}>
-					<Text>{this.props.headerText}</Text>
+					<Text style={styles.headerText}>{this.props.headerText}</Text>
 				</View>
 				<View style={styles.contentContainer}>
-					<Text>{this.props.text}</Text>
+					<Text style={styles.contentText}>{this.props.text}</Text>
 				</View>
-				<Divider/>
+
 				<View style={styles.footerContainer}>
-					<Button style={styles.leftButton} text={'OK'} type={'PRIMARY'}/>
-					<Button text={'SKIP'}/>
+					<Button style={styles.leftButton} text={'OK'} backgroundColor={colors['e-background-indigo-500']} elevation={0} width={80} />
+					<Button style={styles.rightButton}text={'SKIP'} type={'default'} elevation={0}/>
 				</View>
 			</View>
 		);
 	}
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
-		borderWidth: 0.5,
-		flex: 1
+		elevation: 2,
+        height: 200,
+        width: 300,
+        backgroundColor: 'white',
+        borderRadius: 2
 	},
 	headerContainer: {
-	//	flex: 1,
-		alignSelf: 'flex-start'
+	    paddingTop: 24,
+        paddingBottom: 16,
+        paddingLeft: 16,
+        paddingRight: 16
 	},
+    headerText: {
+        fontSize: 24
+    },
 	contentContainer: {
-		flex: 2
+		flex: 2,
+        padding: 16
 	},
+    contentText: {
+        fontSize: 14
+
+    },
 	footerContainer: {
 		flexDirection: 'row',
-		justifyContent: 'space-between'
-	},
-	leftButton: {
-		left: 10
+        padding: 8,
+        justifyContent: 'space-between',
+        borderTopWidth: 0.5,
+        borderTopColor: 'lightgrey'
+
 	}
 
-})
+
+});
 
 module.exports = Card;

@@ -97,12 +97,12 @@ class UiSlider extends Component {
         });
     }
 
-  /*  disable(value) {
-        if (this.state.isDisabled === value) return;
-        this.setState({
-            isDisabled: (typeof value === 'boolean' ? value : true)
-        });
-    }*/
+    /*  disable(value) {
+     if (this.state.isDisabled === value) return;
+     this.setState({
+     isDisabled: (typeof value === 'boolean' ? value : true)
+     });
+     }*/
 
 
     render() {
@@ -136,7 +136,7 @@ class UiSlider extends Component {
                 ]
               }, this.props.style]}>
                     <View
-                        style={[styles.overSlider, sliderStyle]} >
+                        style={[styles.overSlider, sliderStyle]}>
                         {this.props.children}
                     </View>
                 </Animated.View>
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     underSlider: {
         position: 'absolute',
         marginTop: 13,
-      //  width: 265,
+        //  width: 265,
         height: 5,
         backgroundColor: colors['e-background-grey-400'],
         left: 5

@@ -1,13 +1,12 @@
 
 "use strict";
 const React = require('react-native');
-const colors = require('../../styles/colors');
+const colors = require('../../constants/colors');
 
 // SIZE
 const {
   View,
   Text,
-  Stylesheet,
   Component,
   PropTypes,
   Dimensions,
@@ -20,29 +19,30 @@ const SIZE = {
 const COLOR = {
   "DEFAULT": "#cccccc",
   "PRIMARY": "#2196f3",
-  "SUCCES": "#4caf50",
+  "SUCCESS": "#4caf50",
   "INFO": "#03a9f4",
   "WARNING": "#ff9800",
   "DANGER": "#f44336"
-}
+};
 class UiButton extends Component {
 
     static propTypes = {
       borderColor: PropTypes.string,
       textColor: PropTypes.string,
       onPress: PropTypes.func,
-  //    disabled: PropTypes.bool,
+   // disabled: PropTypes.bool,
       text: PropTypes.string.isRequired,
       width: PropTypes.number,
       elevation: PropTypes.number,
       type: PropTypes.string,
-      //ripple: PropTypes.bool
+   // ripple: PropTypes.bool
+      backgroundColor: PropTypes.any
     };
 
     static defaultProps = {
       borderColor: colors['e-text-cyan-A700'],
       textColor: 'white',
-    //  disabled: false,
+   // disabled: false,
       text: 'Button',
       elevation: 5,
       type: 'DEFAULT'
@@ -112,14 +112,18 @@ class UiButton extends Component {
       let textStyle = {
         color: textColor,
         textShadowColor: 'grey'
+
       };
       // TODO: add TouchableHighlight with onPressIn=setState("isPressed", true) and onPressOut=setState("isPressed", false)
+
+        /* THERE ARE 2 backgroundColors! One is just prop passed down, the other is a module trough buttonStyle-buttonSize */
       return (
         <View style={[styles.wrapper, buttonStyle, buttonSize]} onLayout={calculateMinWidth.bind(this)}>
           <View
             style={[styles.button, buttonSize]}
             onPress ={this.handlePress.bind(this)}
             enabled={!isDisabled}
+            backgroundColor={this.props.backgroundColor}
             rippleColor={rippleColor}>
             <Text style={[ styles.text, textStyle]}>
               {this.props.text.toUpperCase()}
@@ -136,14 +140,14 @@ const styles = StyleSheet.create({
   //  borderWidth: 1,
   //  alignSelf: 'center',
     paddingTop: 0.5,
-    paddingBottom: 0,
+    paddingBottom: 0
 
   },
   button: {
     borderRadius: 2,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   text: {
     alignSelf: 'center',

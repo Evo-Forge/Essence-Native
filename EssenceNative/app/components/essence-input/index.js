@@ -2,8 +2,8 @@
 
 const React = require('react-native');
 
-const helpers = require('../../styles/helpers');
-const colors = require('../../styles/colors');
+const helpers = require('../../constants/helpers');
+const colors = require('../../constants/colors');
 
 const {
   Component,
@@ -22,14 +22,16 @@ const INPUT_TYPE = {
 };
 
 const DEFAULT_HEIGHT = 48;
+
 const SIZE = {
   BORDER_RADIUS: 4,
   INPUT_MARGIN_BOTTOM: 10,
   INPUT_HORIZONTAL_MARGIN: 40
-}
+};
+
 const TEXT = {
   fontWeight: '200'
-  }
+  };
 
 class UiInput extends Component {
 
@@ -160,7 +162,7 @@ class UiInput extends Component {
     </View>
     );
   }
-};
+}
 
   class UiInputBackground extends Component {
 
@@ -187,7 +189,7 @@ class UiInput extends Component {
       let mainColor = 'white';
       let height = this.props.height;
       if(React.Platform.OS === 'android') {
-        height +- 4;
+        height += 4;
       }
       if(this.state.isFocused) {
         mainColor = colors['e-text-amber-300'];
@@ -203,11 +205,12 @@ class UiInput extends Component {
 
       return (
         <View style={[styles.bgBox, boxStyle]}>
-          <View style={[styles.bordertop, {
+          <View style={[styles.borderTop, {
              left: 2,
               width: this.props.width - 6,
               backgroundColor: 'red',
-
+              borderBottomWidth: 1,
+              borderBottomColor: 'black'
 
             }]}/>
           <View style={[styles.borderTop, {
@@ -222,11 +225,11 @@ class UiInput extends Component {
 
 const styles = StyleSheet.create({
   bgBox: {
-  //  borderRadius: SIZE.BORDER_RADIUS,
+    borderRadius: SIZE.BORDER_RADIUS,
     position: 'absolute',
     left: 0,
     right: 0,
-    top: 0,
+    top: 0
 
 
   },
@@ -238,7 +241,7 @@ const styles = StyleSheet.create({
   },
   base: {
     fontSize: 19,
-    // color: colors['e-text-amber-600'],
+     color: colors['e-text-amber-600'],
     // paddingTop: 2,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent'
