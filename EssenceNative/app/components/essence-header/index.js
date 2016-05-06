@@ -1,8 +1,8 @@
 const React = require('react-native');
 const Icon = require('../essence-icon/index');
-const text = require('../../styles/typography');
+const text = require('../../constants/typography');
 //const BoldedText = require('');
-const colors = require('../../styles/colors');
+const colors = require('../../constants/colors');
 const {
   Component,
   StyleSheet,

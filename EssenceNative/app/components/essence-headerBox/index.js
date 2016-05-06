@@ -1,6 +1,6 @@
 'use strict';
 const React = require('react-native');
-const colors = require('../../styles/colors');
+const colors = require('../../constants/colors');
 
 const SIZE = {
     ICON_PADDING: 16,
@@ -41,7 +41,7 @@ class UiHeaderBox extends Component {
     };
 
     static defaultProps = {
-        backgroundColor: COLORS.PRIMARY,
+        backgroundColor: '#fff',
         leftIconColor: colors['e-text-green-700'],
         rightIconColor: colors['e-text-deep-purple-900'],
         border: true,

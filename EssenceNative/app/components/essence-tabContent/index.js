@@ -1,15 +1,15 @@
 'use strict';
 
 const React = require('react-native');
-const colors = ('../../styles/colors');
+const colors = ('../../constants/colors');
 
 const SIZE = {
 
 };
 
-const TabMenu = require('./essence-tabMenu/index'),
-    Header = require('./essence-header/index'),
-    HeaderBox = require('./essence-headerBox/index');
+const TabMenu = require('../essence-tabMenu/index'),
+    Header = require('../essence-header/index'),
+    HeaderBox = require('../essence-headerBox/index');
 
 const SPRING_CONFIG = {
     friction: 8
@@ -136,7 +136,7 @@ class UiTabPanel extends Component {
         };
         if (!this.state.active) {
             let diffHeight = HeaderBox.BOX_HEIGHT - Header.BOX_HEIGHT;
-            localStyle.height = height - diffHeight - TabMenu.BOX_HEIGHT;_
+            localStyle.height = height - diffHeight - TabMenu.BOX_HEIGHT;
         }
         return (
             <View style={[styles.panel, localStyle]}>
