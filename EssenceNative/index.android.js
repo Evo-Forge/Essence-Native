@@ -60,14 +60,19 @@ class EssenceNative extends Component {
 
        <Snackbar
           ref="snack"
-
+          content="Snackbar"
+          undoButton={false}
           >
        </Snackbar>
         <TouchableHighlight style={{
           width: 50,
           height: 50,
-          backgroundColor: 'yellow'
-        }} onPress={this.toggleSnackbar.bind(this)}/>
+          backgroundColor: 'yellow',
+          marginBottom: 0
+
+        }} onPress={this.toggleSnackbar.bind(this)}>
+          <View/>
+        </TouchableHighlight>
       </View>
     );
   }

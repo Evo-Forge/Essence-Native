@@ -23,12 +23,22 @@ const width = Dimensions.get('window').width;
 
 class UiSnackBar extends Component {
 
+  static propTypes = {
+    content: PropTypes.string,
+    undoButton: PropTypes.bool
+  };
+
+  static defaultProps = {
+    content: 'Snackbar',
+    undoButton: false
+  };
+
   constructor(props) {
     super(props);
+    this.innerHeight = getHeight();
+    this.pan = new Animated.Value(0 - this.innerHeight);
     this.state = {
-      isActive: true,
-      message: '',
-      pan: new Animated.Value(0)
+      isActive: false
     };
   }
 
@@ -39,6 +49,9 @@ class UiSnackBar extends Component {
       bounciness: 0,
       toValue: 0
     }).start(() => {
+      this.setState({
+        isActive: true
+      });
       this.props.onShow && this.props.onShow();
     });
   }
@@ -50,6 +63,9 @@ class UiSnackBar extends Component {
       bounciness: 0,
       toValue: 0 - this.innerHeight
     }).start(() => {
+      this.setState({
+        isActive: false
+      });
       this.props.onHide && this.props.onHide();
     });
   }
@@ -62,23 +78,20 @@ class UiSnackBar extends Component {
     }
   }
 
-  _setHeight(h) {
-    if (this.innerHeight === getHeight()) {
-      this.pan.setValue(0 - h);
-    }
-    this.innerHeight = h;
+  renderUndoButton() {
+    if (!this.props.undoButton) return;
+    return <View style={styles.undoButton}><Text style={styles.undoText}>UNDO</Text></View>
   }
 
   render() {
-    if (!this.state.isActive) return;
 
     return (
       <View style={[styles.container, this.props.style]}>
         {this.props.children}
         <Animated.View
-          onLayout={(e) => { this._setHeight(e.nativeEvent.layout.height); }}
           style={[styles.wrapper, {bottom: this.pan}]}>
-          <Text style={styles.text}>SnackBar</Text>
+          <Text style={styles.text}>{this.props.content}</Text>
+          {this.renderUndoButton()}
         </Animated.View>
       </View>
     )
@@ -87,24 +100,62 @@ class UiSnackBar extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     height: getHeight(),
     width: width,
-    flex: 1
+    flex: 1,
+    position: 'absolute'
   },
   wrapper: {
-    position: 'absolute',
-    backgroundColor: 'green',
+    flexDirection: 'row',
+    backgroundColor: '#323232',
     height: 48,
-    justifyContent: 'center',
     marginTop: getHeight() * 0.88,
-    width: width
+    width: width,
+    paddingHorizontal: 24,
+    paddingVertical: 14
   },
   text: {
-    textAlign: 'center',
-    color: 'lightgrey'
+    textAlign: 'left',
+    color: 'lightgrey',
+    flex: 1
+  },
+  undoButton: {},
+  undoText: {
+    color: 'green'
   }
-
 });
 
 module.exports = UiSnackBar;
+
+
+/*
+ * toggleSnackbar() {
+ this.refs.snack.toggle();
+ }
+
+ render() {
+
+
+ return (
+ <View style={styles.container}>
+
+ <Snackbar
+ ref="snack"
+ content="Snackbar"
+ undoButton={false}
+ >
+ </Snackbar>
+ <TouchableHighlight style={{
+ width: 50,
+ height: 50,
+ backgroundColor: 'yellow',
+ marginBottom: 0
+
+ }} onPress={this.toggleSnackbar.bind(this)}>
+ <View/>
+ </TouchableHighlight>
+ </View>
+ );
+ }
+ }
+ * */
