@@ -1,9 +1,9 @@
 'use strict';
 
 const React = require('react-native');
-const helpers = require('../../styles/helpers');
-const typography = require('../../styles/typography');
-const colors = require('../../styles/colors');
+const helpers = require('../../constants/helpers');
+const typography = require('../../constants/typography');
+const colors = require('../../constants/colors');
 
 const {
   Switch,
@@ -13,13 +13,10 @@ const {
   Component,
   PropTypes,
   Dimensions
-} = React;
+  } = React;
 
-const SIZE = {
-  INPUT_MARGIN_BOTTOM: 10
-};
 
-const WIDTH_CORRECTOR = 10;
+
 
 class UiSwitch extends Component {
   static propTypes = {
@@ -27,11 +24,10 @@ class UiSwitch extends Component {
     text: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.bool,
+    checked: PropTypes.bool
   };
 
-  static defaultProps = {
-
-  };
+  static defaultProps = {};
 
   constructor(props) {
     super(props);
@@ -41,9 +37,10 @@ class UiSwitch extends Component {
   }
 
   stateSwitch(value) {
-    this.setState ({
+    this.setState({
       switch: value
-    })
+    });
+    this.switch = value;
   }
 
 
@@ -63,15 +60,14 @@ class UiSwitch extends Component {
       </View>
     )
   }
+
   render() {
-    let boxStyle = {},
-      {width} = Dimensions.get('window');
-    boxStyle.width = width - SIZE.INPUT_HORIZONTAL_MARGIN * 2 + WIDTH_CORRECTOR;
-    if(!this.props.text || this.props.text === '') {
+
+    if (!this.props.text || this.props.text === '') {
       return this.renderSwitch();
     }
     return (
-      <View style={[styles.box, boxStyle]}>
+      <View style={styles.box}>
         <Text style={styles.text}>{this.props.text}</Text>
         {this.renderSwitch()}
       </View>
@@ -83,23 +79,12 @@ const styles = StyleSheet.create({
   box: {
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    // marginBottom: SIZE.INPUT_MARGIN_BOTTOM
+    flexDirection: 'column'
   },
   text: {
-    //  flex: 1,
-    //  flexDirection: 'column',
-    //  alignSelf: 'center',
-    fontSize: 16,
-    color: colors['e-text-purple-600'],
-    //  marginBottom: 2,
-    //  marginLeft: WIDTH_CORRECTOR
+    fontSize: 16
   },
-  switch: {
-    //  margin: 0,
-    //  padding: 0,
-    //  left: 0
-  },
+  switch: {}
 
 });
 

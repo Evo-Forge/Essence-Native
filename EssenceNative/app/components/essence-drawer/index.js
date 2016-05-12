@@ -1,6 +1,6 @@
 'use strict';
 
-const {
+import React, {
     Animated,
     PanResponder,
     PropTypes,
@@ -9,9 +9,7 @@ const {
     View,
     Platform,
     Dimensions
-    } = React;
-
-const Header = require('./essence-header/index');
+    } from 'react-native';
 
 module.exports = (function() {
     if (Platform.OS === 'android') {
@@ -48,7 +46,7 @@ module.exports = (function() {
         };
 
         static defaultProps = {
-            drawerWidth: 0,
+            drawerWidth: DEVICE_WIDTH - DEVICE_WIDTH / 4,
             drawerPosition: 'left'
         };
 
@@ -142,7 +140,7 @@ module.exports = (function() {
             if (Math.abs(dy) > 20 || this.isOpen) {
                 return false;
             }
-            if (moveX > DRAG_INITIALIZATION_SIZE || moveY <= Header.BOX_HEIGHT) {
+            if (moveX > DRAG_INITIALIZATION_SIZE) {
                 return false;
             }
             if (moveX < DRAG_INITIALIZATION_SIZE / 3) {

@@ -123,7 +123,7 @@ class UiImages extends Component {
 
 const styles = StyleSheet.create({
     image: {
-        flex: 1,
+     //   flex: 1,          // this triggers flex of parent, should be wrapped with an empty view but that might affect the animation view
         borderWidth: 0,
         backgroundColor: 'transparent'
     }

@@ -74,7 +74,7 @@ class ListItem extends Component {
     const height = 72;
     let bgColor = this.props.backgroundColor;
     if (this.state.isActive) {
-      bgColor = '#fff';
+      bgColor = '#E4E4E4';
     }
     const localStyle = {
       height,

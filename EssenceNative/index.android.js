@@ -12,7 +12,7 @@
  const Paper = require('./app/components/essence-paper');
  const Slider = require('./app/components/essence-sliders');
  const Chip = require('./app/components/essence-chip');
- const DrawerLayout = require('./app/components/essence-drawerLayout');
+ const Drawer = require('./app/components/essence-drawer');
  const Header = require('./app/components/essence-header');
  const Image = require('./app/components/essence-image');
  const BottomSheet = require('./app/components/essence-bottomSheets/index');
@@ -24,15 +24,24 @@
  const TabMenu = require('./app/components/essence-tabMenu');
  const TabItem = require('./app/components/essence-tabItem');
  const TabContent = require('./app/components/essence-tabContent');
-
+ const Snackbar = require('./app/components/essence-snackbar');
+ const Switch = require('./app/components/essence-switch');
  */
 
-const Snackbar = require('./app/components/essence-snackbar');
 
+const ToolBar = require('./app/components/essence-toolBar');
+const Drawer = require('./app/components/essence-drawer');
 const helpers = require('./app/constants/helpers');
 const colors = require('./app/constants/colors');
 
+import Router from './example/Router';
+const { Actions } = require('react-native-router-flux');
 
+import List from './app/components/essence-list';
+import ListItem from './app/components/essence-listItem';
+import ListHeader from './app/components/essence-listHeader';
+
+import Image from './app/components/essence-image';
 
 import React, {
   AppRegistry,
@@ -40,16 +49,44 @@ import React, {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Dimensions,
   PropTypes,
-  TouchableHighlight,
-
+  TouchableHighlight
 } from 'react-native';
+
+const DRAWER_WIDTH = 300;
 
 class EssenceNative extends Component {
 
-  toggleSnackbar() {
-    this.refs.snack.toggle();
+  renderMenu() {
+    return (
+      <ScrollView style={styles.menu}>
+        <List>
+          <ListHeader title="Essence Native"><Image width={50} height={50} source='assets/essence_icon'/></ListHeader>
+          <ListItem title="Home" onPress={() => this.navigate('home')}/>
+          <ListItem title="Toolbar" onPress={() => this.navigate('toolbar')}/>
+          <ListItem title="Divider" onPress={ () => this.navigate('divider')}/>
+          <ListItem title="BottomSheets" onPress={ () => this.navigate('bottomSheets')}/>
+          <ListItem title="Button" onPress={ () => this.navigate('button')}/>
+          <ListItem title="Card" onPress={ () => this.navigate('cards')}/>
+          <ListItem title="Chip" onPress={ () => this.navigate('chip')}/>
+          <ListItem title="Image" onPress={ () => this.navigate('image')}/>
+          <ListItem title="Input" onPress={ () => this.navigate('input')}/>
+          <ListItem title="List" onPress={ () => this.navigate('list')}/>
+          <ListItem title="Paper" onPress={ () => this.navigate('paper')}/>
+          <ListItem title="Switch" onPress={ () => this.navigate('switch')}/>
+          <ListItem title="Snackbar" onPress={ () => this.navigate('snackbar')}/>
+          <ListItem title="TextArea" onPress={ () => this.navigate('textarea')}/>
+
+        </List>
+      </ScrollView>
+    )
+  }
+
+  navigate(which) {
+    this.refs.drawer.closeDrawer();
+    Actions[which]();
   }
 
   render() {
@@ -57,30 +94,40 @@ class EssenceNative extends Component {
 
     return (
       <View style={styles.container}>
-
-       <Snackbar
-          ref="snack"
-          content="Snackbar"
-          undoButton={false}
-          >
-       </Snackbar>
-        <TouchableHighlight style={{
-          width: 50,
-          height: 50,
-          backgroundColor: 'yellow',
-          marginBottom: 0
-
-        }} onPress={this.toggleSnackbar.bind(this)}>
-          <View/>
-        </TouchableHighlight>
+        <Drawer
+          ref="drawer"
+          drawerWidth={DRAWER_WIDTH}
+          style={styles.drawer}
+          keyboardDismissMode="on-drag"
+          renderNavigationView={this.renderMenu.bind(this)}>
+          <View style={[styles.wrapper]}>
+            <Router />
+          </View>
+        </Drawer>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#c3c3c3',
+    height: Dimensions.get('window').height
+  },
+  menu: {
+    width: DRAWER_WIDTH,
+    height: Dimensions.get('window').height,
+    backgroundColor: 'white'
+  },
+  drawer: {
+    position: 'absolute',
+    left: 0,
+    top: 0
+  },
   container: {
-    flex: 1
+    flex: 1,
+
+
 
 
   }
