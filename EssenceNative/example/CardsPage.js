@@ -20,10 +20,17 @@ export default class CardsPage extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Card/>
       </View>
     )
   }
-
 }
+
+const styles = StyleSheet.create({
+  container :{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});

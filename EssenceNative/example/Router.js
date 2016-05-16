@@ -8,8 +8,8 @@
 const React = require('react-native');
 
 // IMPORT ALL PAGES FOR EXAPMLE
-import ToolBarPage from './ToolBarPage';
 import HomePage from './HomePage';
+import ActionButton from './ActionButtonPage';
 import DividerPage from './DividerPage';
 import BottomSheetsPage from './BottomSheetsPage';
 import ButtonPage from './ButtonPage';
@@ -19,9 +19,11 @@ import ImagePage from './ImagePage';
 import InputPage from './InputPage';
 import ListPage from './ListPage';
 import PaperPage from './PaperPage';
-import SwitchPage from './SwitchPage';
+import SliderPage from './SliderPage';
 import SnackbarPage from './SnackbarPage';
+import SwitchPage from './SwitchPage';
 import TextAreaPage from './TextAreaPage';
+import ToolBarPage from './ToolBarPage';
 
 const {
   Router,
@@ -44,6 +46,7 @@ export default class AppRouter extends Component {
     return (
       <Router hideNavBar={true}>
         <Route name="home" component={HomePage} />
+        <Route name="action" component={ActionButton}/>
         <Route name="toolbar" component={ToolBarPage}/>
         <Route name="divider" component={DividerPage}/>
         <Route name="bottomSheets" component={BottomSheetsPage}/>
@@ -54,6 +57,7 @@ export default class AppRouter extends Component {
         <Route name="input" component={InputPage}/>
         <Route name="list" component={ListPage}/>
         <Route name="paper" component={PaperPage}/>
+        <Route name="slider" component={SliderPage}/>
         <Route name="switch" component={SwitchPage}/>
         <Route name="snackbar" component={SnackbarPage}/>
         <Route name="textarea" component={TextAreaPage}/>

@@ -20,10 +20,26 @@ export default class ImagePage extends React.Component {
 
   render() {
     return (
-      <View>
-       <Image/>
+      <View style={styles.container}>
+       <Image height={200} width={200} source="assets/essence_icon"/>
+        <View style={{height: 10}} />
+       <Image height={150} width={150} source="assets/essence_icon"/>
+        <View style={{height: 10}} />
+       <Image height={100} width={100} source="assets/essence_icon"/>
       </View>
     )
   }
 
 }
+
+const styles = StyleSheet.create( {
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
+});
+
+

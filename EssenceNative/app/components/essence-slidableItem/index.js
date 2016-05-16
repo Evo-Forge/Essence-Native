@@ -9,7 +9,8 @@ const {
   StyleSheet,
   Animated,
   PanResponder,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions
 } = React;
 
 const DEFAULT_WIDTH = Dimensions.get('window').width / 3.5;
@@ -46,7 +47,7 @@ let UID = 0;  // unique slide id for eventemitter
       let NEGATIVE_WIDTH = 0 - DEFAULT_WIDTH,
         NEGATIVE_CHANGE_SIZE = 0 - DEFAULT_CHANGE_SIZE,
         canSlide = true,
-        isSLiding = false;
+        isSliding = false;
       this.panResponder = PanResponder.create({
         onMoveShouldSetPanResponder: (e, gesture) => {
           let { locationX } = e.nativeEvent;
@@ -91,7 +92,7 @@ let UID = 0;  // unique slide id for eventemitter
             x = 0;
           }
           if (dir === 'right' && dx >= DEFAULT_CHANGE_SIZE) {
-            candSlide = false;
+            canSlide = false;
             this.hide();
             return;
           }

@@ -237,14 +237,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0.5,
         height: 2,
-        backgroundColor: 'red'
+        backgroundColor: 'green'
     },
     bottomBorder: {
         position: 'absolute',
         left: 0,
         bottom: 1,
         height: 1,
-        backgroundColor: 'blue'
+        backgroundColor: '#757575'
     },
     box: {
         overflow: 'hidden',
@@ -268,10 +268,10 @@ const styles = StyleSheet.create({
         paddingLeft: 4
     },
     labelBoxFocused: {
-     //   top: 1
+        top: 1
     },
     labelText: {
-        color: '#c3c3c3'
+        color: 'black'
     },
     labelTextFocused: {
         color: 'blue'

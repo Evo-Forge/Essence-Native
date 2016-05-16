@@ -35,7 +35,7 @@ export default class SnackbarPage extends React.Component {
         <TouchableHighlight style={{
            width: 50,
            height: 50,
-           backgroundColor: 'yellow',
+           backgroundColor: 'black',
            marginBottom: 0
           }} onPress={this.toggleSnackbar.bind(this)}>
           <View/>

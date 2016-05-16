@@ -20,10 +20,18 @@ export default class InputPage extends React.Component {
 
   render() {
     return (
-      <View>
-       <Input/>
+      <View style={styles.container}>
+       <Input placeholder="Input"/>
       </View>
     )
   }
-
 }
+
+const styles = StyleSheet.create({
+  container :{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  }
+});

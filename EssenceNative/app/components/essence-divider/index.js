@@ -44,7 +44,7 @@ class UiDivider extends Component {
   // default proprieties of the compoment
 
   static defaultProps = {
-    size: 'thin',
+    size: 'thick',
     width: 'full',
     color: color['e-background-indigo-400']
   };
@@ -52,14 +52,14 @@ class UiDivider extends Component {
 // If width is a number, we are going to use it. Otherwise, we use flex.
 
   render() {
-    console.log(this.props.color);
+
     let barSize;
-    if(typeof this.props.size ==="string") {
+    if(typeof this.props.size === "string") {
       barSize = SIZE[this.props.size];
     } else if (typeof this.props.size === 'number') {
       barSize = this.props.size;
     } else {
-      barSize === SIZE['thin'];
+      barSize = SIZE['thin'];
     }
     const wrapperStyle = {};
     let flexView;
@@ -78,12 +78,14 @@ class UiDivider extends Component {
       flexView = <View style={{flex: 1 - localStyle.flex}} />;
     }
     return (
-      <View style={wrapperStyle}>
-        <View style={[localStyle, this.props.style]} />
-        {flexView}
+      <View>
+        <View style={wrapperStyle}>
+          <View style={[localStyle, this.props.style]} />
+          {flexView}
+        </View>
       </View>
     )
   }
-};
+}
 
 module.exports = UiDivider;

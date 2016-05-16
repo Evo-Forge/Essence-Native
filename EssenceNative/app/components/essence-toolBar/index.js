@@ -77,21 +77,21 @@ class UiToolBar extends Component {
       width,
       //backgroundColor: this.props.color
     };
-    const paddingHorizontal = 0;
+  /*  const paddingHorizontal = 0;
     const middleStyle = {
       paddingHorizontal: paddingHorizontal
-    };
+    };*/
 
-    if (!this.props.leftIcon) {
+  /*  if (!this.props.leftIcon) {
       middleStyle.paddingHorizontal = 16;
-    }
+    }*/
     console.log(localStyle.height);
     console.log(localStyle.backgroundColor);
     return (
       <View>
         <View style={[styles.wrapper, localStyle]}>
           {this.renderLeftIcon()}
-            <View style={[styles.titleView, middleStyle]}>
+            <View style={[styles.titleView]}>
               <Text style={styles.titleText}>
                 {this.props.title}
               </Text>
@@ -108,22 +108,30 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     padding: 8,
-    backgroundColor: 'red',
-    width: width
+    backgroundColor: '#fff',
+    width: width,
+//    paddingHorizontal : 16,
+    elevation: 2
   },
   tittleView: {
-    alignSelf: 'flex-start'
+    flex: 1,
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    paddingHorizontal: 10
+
   },
   titleText: {
     fontSize: 16,
-    alignSelf: 'center',
-    textAlign: 'left',
-    color: 'black'
+    textAlign: 'center',
+    color: 'black',
+    alignSelf: 'center'
   },
   leftIconWrapper: {
     paddingHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'center'
+
   },
   rightIconWrapper: {
     alignItems: 'center',
@@ -131,15 +139,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   leftIcon: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
     backgroundColor: 'grey',
-    borderRadius: 40
+
   },
   rightIcon: {
     width: 25,
     height: 25,
-    backgroundColor: 'grey'
+    backgroundColor: 'grey',
+
   }
 });
 

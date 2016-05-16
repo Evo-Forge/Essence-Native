@@ -195,7 +195,7 @@ class UiInputBackground extends Component {
       height += 4;
     }
     if (this.state.isFocused) {
-      mainColor = colors['e-text-amber-300'];
+      mainColor = '#FAFAFA';
     }
     let boxStyle = {
       width: this.props.width,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   },
   base: {
     fontSize: 19,
-    color: colors['e-text-amber-600'],
+    color: 'black',
     // paddingTop: 2,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent'

@@ -19,11 +19,13 @@ export default class SwitchPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Switch />
+        <Switch text="Switch"/>
+        <View style={{height: 5}} />
+        <Switch value={true} />
+        <Switch text="Disabled Switch" disabled={true}/>
       </View>
     )
   }
-
 }
 
 const styles = StyleSheet.create({

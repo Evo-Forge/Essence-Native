@@ -37,7 +37,7 @@ class UiSwitch extends Component {
   }
 
   stateSwitch(value) {
-    this.setState({
+      this.setState({
       switch: value
     });
     this.switch = value;
@@ -45,14 +45,14 @@ class UiSwitch extends Component {
 
 
   renderSwitch() {
-
+      const switchValue = this.props.value || this.state.switch;
     return (
 
       <View>
         <Switch
           style={styles.switch}
           onValueChange={this.stateSwitch.bind(this)}
-          value={this.state.switch}
+          value={switchValue}
           disabled={this.props.disabled}
           name={this.props.name}
         />

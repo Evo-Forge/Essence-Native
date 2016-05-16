@@ -17,12 +17,24 @@ export default class ToolBarPage extends React.Component {
 
   render() {
     return (
-      <View>
-        <ToolBar></ToolBar>
+      <View style={styles.container}>
+        <ToolBar leftIcon="." rightIcon="." tittle="Title"/>
         <View style={{height: 10}} />
-        <ToolBar title="With title" />
+        <ToolBar leftIcon="." title="Title" />
+        <View style={{height: 10}} />
+        <ToolBar rightIcon="." title="Title" />
+        <View style={{height: 10}} />
+        <ToolBar title="Title" />
       </View>
     )
   }
-
 }
+
+const styles = StyleSheet.create({
+  container :{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  }
+});

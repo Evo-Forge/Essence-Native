@@ -18,7 +18,8 @@ export default class TextAreaPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextArea />
+         <TextArea placeholder="Text area with 3 rows" numberOfLines={3}/>
+        <TextArea placeholder="Text Area with 5 rows" numberOfLines={5}/>
       </View>
     )
   }
@@ -30,5 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+
   }
 });

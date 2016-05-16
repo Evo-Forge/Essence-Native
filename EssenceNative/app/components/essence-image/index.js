@@ -64,7 +64,7 @@ class UiImages extends Component {
     }
 
     render() {
-        console.log(ASSETS);
+
         if (this.props.lazyLoad === true && (!this.state.width || !this.state.height)) {
             return <View style={{height: this.props.height, width: 10}}/>;
         }
@@ -92,7 +92,7 @@ class UiImages extends Component {
                 height: imgHeight
             };
         }
-        console.log(imgSrc);
+
         if (!this.props.animated) {
             return (
                 <Image

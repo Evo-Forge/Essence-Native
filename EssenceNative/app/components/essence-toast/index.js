@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react-native');
-const colors = require('../../styles/colors');
+const colors = require('../../constants/colors');
 const {
   Component,
   TouchableWithoutFeedback,
@@ -12,7 +12,7 @@ const {
 } = React;
 
 const { TYPE } = require('./ui'),
-  routeACtions = require('../route')
+  routeActions = require('../route')
 
 const DEFAULT_TIMEOUT = 8,
   DEFAULT_DURATION = 300;
@@ -33,7 +33,7 @@ class UiToast extends Component {
     this._listener = store.addListener([
       TYPE.TOAST_SHOW, this.onShow.bind(this),
       TYPE.TOAST_HIDE, this.onHide.bind(this),
-      routeActions,TYPE.NAVIGATION, this.onAutoHide.bind(this)
+      routeActions.TYPE.NAVIGATION, this.onAutoHide.bind(this)
     ]);
     this._timer = setInterval(this.checkVisible.bind(this), 1000);
   }
@@ -47,7 +47,7 @@ class UiToast extends Component {
     if(!this._ts) return;
     let diff = Date.now - this._ts;
     if(diff < 1000) return;
-    this.onHide;
+    this.onHide();
   }
 
   onShow(msg, _maxSeconds) {
@@ -105,11 +105,36 @@ class UiToast extends Component {
       <Animated.View style={[styles.wrapper, localStyle]}>
         <TouchableWithoutFeedback onPress={this.onClose.bind(this)}>
           <View>
-            <Text style={styles.text}>this.state.message</Text>
+            <Text style={styles.text}>{this.state.message}</Text>
           </View>
         </TouchableWithoutFeedback>
       </Animated.View>
     )
   }
-
 }
+
+const styles = StyleSheet.create({
+  inactive: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    bottom: -1,
+    left: -1
+  },
+  wrapper: {
+    flex: 1,
+    backgroundColor: COLORS.TOAST_BACKGROUND,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.TOAST_BACKGROUND,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: FOOTER_BAR_HEIGHT,
+    paddingVertical: 16,
+    paddingHorizontal: 20
+  },
+  text: {
+    color: COLORS.TOAST_TEXT,
+    fontSize: 16
+  }
+});

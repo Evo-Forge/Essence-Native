@@ -10,7 +10,7 @@
  const Card = require('./app/components/essence-cards');
  const Switch = require('./app/components/essence-switch');
  const Paper = require('./app/components/essence-paper');
- const Slider = require('./app/components/essence-sliders');
+ const Slider = require('./app/components/essence-slider');
  const Chip = require('./app/components/essence-chip');
  const Drawer = require('./app/components/essence-drawer');
  const Header = require('./app/components/essence-header');
@@ -64,21 +64,22 @@ class EssenceNative extends Component {
       <ScrollView style={styles.menu}>
         <List>
           <ListHeader title="Essence Native"><Image width={50} height={50} source='assets/essence_icon'/></ListHeader>
-          <ListItem title="Home" onPress={() => this.navigate('home')}/>
-          <ListItem title="Toolbar" onPress={() => this.navigate('toolbar')}/>
-          <ListItem title="Divider" onPress={ () => this.navigate('divider')}/>
+          <ListItem title="Home" onPress={ () => this.navigate('home')}/>
+          <ListItem title="ActionButton" onPress={ () => this.navigate('actionButton')}/>
           <ListItem title="BottomSheets" onPress={ () => this.navigate('bottomSheets')}/>
           <ListItem title="Button" onPress={ () => this.navigate('button')}/>
           <ListItem title="Card" onPress={ () => this.navigate('cards')}/>
           <ListItem title="Chip" onPress={ () => this.navigate('chip')}/>
+          <ListItem title="Divider" onPress={ () => this.navigate('divider')}/>
           <ListItem title="Image" onPress={ () => this.navigate('image')}/>
           <ListItem title="Input" onPress={ () => this.navigate('input')}/>
           <ListItem title="List" onPress={ () => this.navigate('list')}/>
           <ListItem title="Paper" onPress={ () => this.navigate('paper')}/>
+          <ListItem title="Slider" onPress{ () => this.navigate('slider')}/>
           <ListItem title="Switch" onPress={ () => this.navigate('switch')}/>
           <ListItem title="Snackbar" onPress={ () => this.navigate('snackbar')}/>
           <ListItem title="TextArea" onPress={ () => this.navigate('textarea')}/>
-
+          <ListItem title="Toolbar" onPress={() => this.navigate('toolbar')}/>
         </List>
       </ScrollView>
     )
