@@ -56,7 +56,7 @@ import React, {
 } from 'react-native';
 
 const DRAWER_WIDTH = 300;
-
+// <ListItem title="Slider" onPress{ () => this.navigate('slider')}/>
 class EssenceNative extends Component {
 
   renderMenu() {
@@ -75,9 +75,10 @@ class EssenceNative extends Component {
           <ListItem title="Input" onPress={ () => this.navigate('input')}/>
           <ListItem title="List" onPress={ () => this.navigate('list')}/>
           <ListItem title="Paper" onPress={ () => this.navigate('paper')}/>
-          <ListItem title="Slider" onPress{ () => this.navigate('slider')}/>
+
           <ListItem title="Switch" onPress={ () => this.navigate('switch')}/>
           <ListItem title="Snackbar" onPress={ () => this.navigate('snackbar')}/>
+          <ListItem title="Test" onPress={ () => this.navigate('test')}/>
           <ListItem title="TextArea" onPress={ () => this.navigate('textarea')}/>
           <ListItem title="Toolbar" onPress={() => this.navigate('toolbar')}/>
         </List>

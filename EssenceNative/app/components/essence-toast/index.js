@@ -77,7 +77,7 @@ class UiToast extends Component {
       this._ts = null;
       this.setState({
         isActive: false,
-        message: ''
+        message: 'Message'
       });
     });
   }

@@ -22,6 +22,7 @@ import PaperPage from './PaperPage';
 import SliderPage from './SliderPage';
 import SnackbarPage from './SnackbarPage';
 import SwitchPage from './SwitchPage';
+import TestPage from './TestPage';
 import TextAreaPage from './TextAreaPage';
 import ToolBarPage from './ToolBarPage';
 
@@ -46,7 +47,7 @@ export default class AppRouter extends Component {
     return (
       <Router hideNavBar={true}>
         <Route name="home" component={HomePage} />
-        <Route name="action" component={ActionButton}/>
+        <Route name="actionButton" component={ActionButton}/>
         <Route name="toolbar" component={ToolBarPage}/>
         <Route name="divider" component={DividerPage}/>
         <Route name="bottomSheets" component={BottomSheetsPage}/>
@@ -59,6 +60,7 @@ export default class AppRouter extends Component {
         <Route name="paper" component={PaperPage}/>
         <Route name="slider" component={SliderPage}/>
         <Route name="switch" component={SwitchPage}/>
+        <Route name="test" component={TestPage} initial={true}/>
         <Route name="snackbar" component={SnackbarPage}/>
         <Route name="textarea" component={TextAreaPage}/>
 

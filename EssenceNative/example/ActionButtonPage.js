@@ -11,18 +11,34 @@ import React, {
 
 } from 'react-native';
 
-export default class ActionButtonPage extends React.Compnent {
+export default class ActionButtonPage extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <ActionButton/>
+        <ActionButton
+          style={{
+          marginBottom: 10
+          }}
+          color="#FF4081"
+          onTouch={() => {
+          this.refs.bubbleBtn.toggle();
+          }}
+        />
+        <ActionButton
+          color="#FF4081"
+          ref="bubbleBtn"
+        />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {}
-
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  }
 });
