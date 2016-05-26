@@ -11,7 +11,8 @@ const {
   Animated,
   TouchableWithoutFeedback,
   Component,
-  Dimensions
+  Dimensions,
+  Text
   } = React;
 
 const {
@@ -43,10 +44,6 @@ class AnimatedHeart extends Component {
       outputRange: [ANIMATION_END_Y, 0]
     });
 
-    this._opacityAnimation = this._yAnimation.interpolate({
-      inputRange: [0, ANIMATION_END_Y],
-      outputRange: [1, 0]
-    });
 
     this._scaleAnimation = this._yAnimation.interpolate({
       inputRange: [0, 15, 30],
@@ -59,15 +56,19 @@ class AnimatedHeart extends Component {
       outputRange: [0, 15, 0]
     });
 
-    this._rotateAnimation = this._yAnimation.interpolate({
+    /* old inputs for rotate
       inputRange: [0, ANIMATION_END_Y/4, ANIMATION_END_Y/3, ANIMATION_END_Y/2, ANIMATION_END_Y],
-      outputRange: ['0deg', '-2deg', '0deg', '2deg', '0deg']
+     outputRange: ['0deg', '-45deg', '0deg', '45deg', '0deg']*/
+
+    this._rotateAnimation = this._yAnimation.interpolate({
+      inputRange: [ 0, 300],
+      outputRange: [ '-25deg', '0deg']
     });
   }
 
   componentDidMount() {
     Animated.timing(this.state.position, {
-      duration: 2000,
+      duration: 100,
       toValue: NEGATIVE_END_Y
     }).start(this.props.onComplete);
   }
@@ -75,12 +76,11 @@ class AnimatedHeart extends Component {
   getHeartAnimationStyle() {
     return {
       transform: [
-        {translateY: this.state.position},
-        {translateX: this._xAnimation},
+    //    {translateY: this.state.position},
+    //    {translateX: this._xAnimation},
         {scale: this._scaleAnimation},
         {rotate: this._rotateAnimation}
-      ],
-      opacity: this._opacityAnimation
+      ]
     }
   }
 
@@ -88,8 +88,8 @@ class AnimatedHeart extends Component {
 
     return (
       <View {...this.props} style={[styles.heart, this.props.style]}>
-        <View style={[styles.leftHeart, styles.heartShape]}/>
-        <View style={[styles.rightHeart, styles.heartShape]}/>
+        <View style={styles.circle}><Text style={styles.circleText}>+</Text></View>
+
       </View>
     )
   }
@@ -111,31 +111,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   heart: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     backgroundColor: 'transparent'
   },
-  heartShape: {
-    width: 30,
-    height: 45,
+  circle: {
+    width: 60,
+    height: 60,
     position: 'absolute',
     top: 0,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    backgroundColor: '#6427d1'
+    borderRadius: 60,
+    backgroundColor: '#6427d1',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  leftHeart: {
-    transform: [
-      {rotate: '-45deg'}
-    ],
-    left: 5
-  },
-  rightHeart: {
-    transform: [
-      {rotate: '45deg'}
-    ],
-    right: 5
+  circleText : {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'center'
   }
+
 });
 
 module.exports = AnimatedHeart;
