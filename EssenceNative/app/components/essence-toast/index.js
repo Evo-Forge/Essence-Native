@@ -1,12 +1,13 @@
+// not finished, might be redundant
+
 'use strict';
 
 const React = require('react-native');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
+
 const {
   Component,
   TouchableWithoutFeedback,
-  StyleSheet,
-  PropTypes,
   Animated,
   View
 } = React;
@@ -26,7 +27,7 @@ class UiToast extends Component {
       fade: new Animated.Value(0)
     };
     this.counter = 0;
-    this.maxSeconds = DEFAULT_TIMEOT;
+    this.maxSeconds = DEFAULT_TIMEOUT;
   }
 
   componentWillMount() {
@@ -113,28 +114,4 @@ class UiToast extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  inactive: {
-    position: 'absolute',
-    width: 1,
-    height: 1,
-    bottom: -1,
-    left: -1
-  },
-  wrapper: {
-    flex: 1,
-    backgroundColor: COLORS.TOAST_BACKGROUND,
-    borderTopWidth: 1,
-    borderTopColor: COLORS.TOAST_BACKGROUND,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: FOOTER_BAR_HEIGHT,
-    paddingVertical: 16,
-    paddingHorizontal: 20
-  },
-  text: {
-    color: COLORS.TOAST_TEXT,
-    fontSize: 16
-  }
-});
+module.exports = UiToast;

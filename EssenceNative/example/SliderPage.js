@@ -25,7 +25,7 @@ export default class SliderPage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    top: 250
   }
 });
 

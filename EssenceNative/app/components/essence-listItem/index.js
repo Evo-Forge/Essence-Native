@@ -1,18 +1,18 @@
 'use strict';
 
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const {
   Component,
-  StyleSheet,
   View,
   Dimensions,
   PropTypes,
   TouchableHighlight,
   Text
   } =  React;
+
+// icons are just empty views for now but they should be replaced by the icon component
 
 
 class ListItem extends Component {
@@ -140,63 +140,6 @@ class ListItem extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingTop: 8,
-    paddingBottom: 8
-  },
-  middle: {
-    flex: 1,
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    alignSelf: 'center'
-  },
-  titleView: {
-    alignSelf: 'flex-start'
-  },
-  titleText: {
-    fontSize: 16,
-    alignSelf: 'center',
-    textAlign: 'left',
-    color: 'black'
-  },
-  contentView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  contentText: {
-    marginTop: 1,
-    fontSize: 14,
-    alignSelf: 'center',
-    textAlign: 'left',
-    paddingHorizontal: 72
-
-  },
-  leftIconWrapper: {
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  rightIconWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 16
-  },
-  leftIcon: {
-    width: 40,
-    height: 40,
-    backgroundColor: 'grey',
-    borderRadius: 40
-  },
-  rightIcon: {
-    width: 25,
-    height: 25,
-    backgroundColor: 'grey'
-  }
-});
 
 module.exports = ListItem;
 

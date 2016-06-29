@@ -1,21 +1,15 @@
 'use strict';
 
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
-const typography = require('../../constants/typography');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const {
   Switch,
   View,
   Text,
-  StyleSheet,
   Component,
   PropTypes,
-  Dimensions
   } = React;
-
-
 
 
 class UiSwitch extends Component {
@@ -67,25 +61,12 @@ class UiSwitch extends Component {
       return this.renderSwitch();
     }
     return (
-      <View style={styles.box}>
+      <View style={styles.container}>
         <Text style={styles.text}>{this.props.text}</Text>
         {this.renderSwitch()}
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  box: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  text: {
-    fontSize: 16
-  },
-  switch: {}
-
-});
 
 module.exports = UiSwitch;

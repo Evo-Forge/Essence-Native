@@ -1,15 +1,13 @@
 'use strict';
 
 const React = require('react-native');
+const styles = require('./styles');
 
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
 
 const {
   Component,
   TextInput,
   View,
-  StyleSheet,
   Dimensions,
   PropTypes
   } = React;
@@ -17,17 +15,13 @@ const {
 const INPUT_TYPE = {
   'password': 'default',
   'text': 'default',
-  'email': 'email-adress',
+  'email': 'email-address',
   'number': 'numeric'
 };
 
 const DEFAULT_HEIGHT = 48;
 
-const SIZE = {
-  BORDER_RADIUS: 4,
-  INPUT_MARGIN_BOTTOM: 10,
-  INPUT_HORIZONTAL_MARGIN: 40
-};
+const INPUT_HORIZONTAL_MARGIN = 40;
 
 const TEXT = {
   fontWeight: '200'
@@ -120,7 +114,7 @@ class UiInput extends Component {
 
   render() {
     let { width } = Dimensions.get('window');
-    width = width - SIZE.INPUT_HORIZONTAL_MARGIN * 2;
+    width = width - INPUT_HORIZONTAL_MARGIN * 2;
     let height = this.props.height || DEFAULT_HEIGHT;
     let mainColor = 'white',
       placeholderColor = 'lightgrey';
@@ -226,39 +220,5 @@ class UiInputBackground extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  bgBox: {
-    borderRadius: SIZE.BORDER_RADIUS,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0
-
-
-  },
-  box: {
-    overflow: 'hidden',
-    alignSelf: 'center',
-    marginBottom: SIZE.INPUT_MARGIN_BOTTOM,
-
-  },
-  base: {
-    fontSize: 19,
-    color: 'black',
-    // paddingTop: 2,
-    justifyContent: 'flex-start',
-    backgroundColor: 'transparent'
-  },
-  borderTop: {
-    height: 1
-  },
-  borderBottom: {
-    position: 'absolute',
-    bottom: 0,
-    left: 3,
-    height: 5,
-    borderBottomWidth: 0.8
-  }
-});
 
 module.exports = UiInput;

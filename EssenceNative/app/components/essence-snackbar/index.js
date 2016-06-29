@@ -1,25 +1,15 @@
 'use strict';
 
 const React = require('react-native');
-
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const {
   Component,
   View,
-  StyleSheet,
   Text,
-  Dimensions,
   PropTypes,
   Animated
   } = React;
-
-function getHeight() {
-  return Dimensions.get('window').height;
-}
-
-const width = Dimensions.get('window').width;
 
 class UiSnackBar extends Component {
 
@@ -98,32 +88,6 @@ class UiSnackBar extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: getHeight(),
-    width: width,
-    flex: 1,
-    position: 'absolute'
-  },
-  wrapper: {
-    flexDirection: 'row',
-    backgroundColor: '#323232',
-    height: 48,
-    marginTop: getHeight() * 0.88,
-    width: width,
-    paddingHorizontal: 24,
-    paddingVertical: 14
-  },
-  text: {
-    textAlign: 'left',
-    color: 'lightgrey',
-    flex: 1
-  },
-  undoButton: {},
-  undoText: {
-    color: 'green'
-  }
-});
 
 module.exports = UiSnackBar;
 

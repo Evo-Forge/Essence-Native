@@ -1,13 +1,14 @@
 'use strict';
 
 const React = require('react-native');
-
+const styles = require('./styles');
 const colors = require('../../constants/colors');
+
+// must set option for size of paper
 
 const {
   View,
   Text,
-  StyleSheet,
   Component,
   PropTypes
 } = React;
@@ -18,7 +19,7 @@ const TYPES = {
   'circle': 50
 };
 
-const BORDER_RADIUS = 2;
+
 class UiPaper extends Component {
 
     static propTypes = {
@@ -34,8 +35,7 @@ class UiPaper extends Component {
     };
 
     render() {
-      let paperSize = {},
-        borderRadius,
+      let borderRadius,
         elevation = this.props.elevation;
       if(this.props.type === 'sharp') {
         borderRadius = TYPES['sharp'];
@@ -58,19 +58,6 @@ class UiPaper extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: 100,
-    width: 100,
-    backgroundColor: 'white'
 
-  },
-  text: {
-    flex: 1,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    top: 40
-  }
-});
 
 module.exports = UiPaper;

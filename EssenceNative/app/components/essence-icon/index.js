@@ -1,13 +1,12 @@
 
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
 const Image = require('../essence-image/index');
-const TOUCH_AREA_SIZE = 12;
+const styles = require('./styles');
+
+
 // should have a file with all the icon names
 const {
   Component,
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
@@ -34,8 +33,8 @@ const {
     };
 
     static defaultProps = {
-      color : colors['e-text-amber-100'],
-      colorActive: colors['e-text-amber-300'],
+      color : '#FFECB3',
+      colorActive: '#FFD54F',
       border: false,
       active: false
     };
@@ -96,14 +95,14 @@ const {
     renderFont() {
       let iconColor = this.props.color,
         iconName = this.props.name,
-        iconBorder = colors['e-text-amber-400'];
+        iconBorder = '#FFCA28';
       if(this.state.isActive || this.props.active) {
         if(this.props.colorActive) {
           iconColor = this.props.colorActive;
         } else {
-          iconColor = colors['e-text-blue-200'];
+          iconColor = '#90CAF9';
         }
-        iconBorder = colors['e-text-blue-300'];
+        iconBorder = '#64B5F6';
       }
       let iconStyle = {};
       if(this.props.border !== false) {
@@ -143,29 +142,5 @@ const {
       return this.renderTouchable(this.renderFont());
     }
   }
-
-  const style = StyleSheet.create ({
-    icon: {
-      borderWidth: 0,
-      margin: 0,
-      padding: 0,
-      textAlign: 'center',
-      fontWeight: '100'
-    },
-    fontIcon: {
-      margin: 0,
-      padding: 0,
-      backgroundColor: 'transparent'
-    },
-    touch: {
-      backgroundColor: 'transparent',
-      left: -TOUCH_AREA_SIZE,
-      top: -TOUCH_AREA_SIZE,
-      paddingLeft: TOUCH_AREA_SIZE,
-      paddingTop: TOUCH_AREA_SIZE,
-      paddingRight: TOUCH_AREA_SIZE,
-      opacity: 1
-    }
-  });
 
 module.exports = UiIcon;

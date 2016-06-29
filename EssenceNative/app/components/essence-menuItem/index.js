@@ -3,18 +3,17 @@
 // single menu item link
 
 const React = require('react-native');
+const styles = require('./styles');
+
+// this component might be redundant
 
 const {
   View,
   Component,
-  StyleSheet,
   PropTypes,
   TouchableHighlight,
   Dimensions
   } = React;
-
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
 
 
 class MenuItem extends Component {
@@ -77,28 +76,5 @@ class MenuItem extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingVertical: 8,
-    paddingHorizontal: 8
-  },
-  icon: {
-    marginTop: 2,
-    paddingRight: 8
-  },
-  text: {
-    fontSize: 16,
-    textShadowRadius: 2,
-    textShadowColor: 'grey',
-    textShadowOffset: {
-      width: 1,
-      height: 1
-    }
-  }
-});
 
 module.exports = MenuItem;

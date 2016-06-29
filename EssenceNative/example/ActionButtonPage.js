@@ -8,7 +8,7 @@ import React, {
   StyleSheet,
   Text,
   View,
-
+  TouchableOpacity
 } from 'react-native';
 
 export default class ActionButtonPage extends React.Component {
@@ -16,6 +16,7 @@ export default class ActionButtonPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
         <ActionButton
           style={{
           marginBottom: 10
@@ -40,5 +41,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white'
+  },
+  button: {
+    padding: 20,
+    borderWidth: 1,
+    borderRadius: 5
   }
 });
+
+
+/*<View style = {{flex: 1, justifyContent: 'center'}}>
+ <TouchableOpacity style={styles.button} onPress={this._onPress.bind(this)}>
+ <Text>Open</Text>
+ </TouchableOpacity>
+ </View>*/

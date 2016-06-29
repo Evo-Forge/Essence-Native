@@ -5,15 +5,15 @@
 
 const React = require('react-native');
 const ui = require('../../utils/ui');
+const styles = require('./styles');
 
 const {
   Component,
-  StyleSheet,
   View,
-  Dimensions,
   PropTypes,
   TouchableHighlight,
-  Text
+  Text,
+  Animated
   } = React;
 
 const SIZE = {
@@ -42,9 +42,37 @@ class UiActionButton extends Component {
       elevation: 6,
       isVisible: true,
       isPressed: false
+    };
+    this.pan = new Animated.Value(0);
+  }
+
+  componentWillMount() {
+    this.scaleAnimation = this.pan.interpolate({
+      inputRange: [0, 15, 30],
+      outputRange: [0, 1.2, 1],
+      extrapolate: 'clamp'
+    });
+    this.rotateAnimation = this.pan.interpolate({
+      inputRange: [-150, 0, 0],
+      outputRange: ['0deg', '15deg', '0deg']
+    });
+  }
+  componentDidMount() {
+    Animated.timing(this.pan, {
+      toValue: 0,
+      duration: 500
+    }).start()
+  }
+
+  getAnimationStyle() {
+    return {
+      transform: [
+        {scale: this.scaleAnimation},
+        {rotate: this.rotateAnimation}
+      ]
     }
   }
-  
+
   toggle() {
     if(this.state.isVisible) return this.hide();
     return this.show();
@@ -76,9 +104,9 @@ class UiActionButton extends Component {
   }
 
   renderIcon() {
-    if(!this.props.icon) return;
+ //   if(!this.props.icon) return;
     return (
-      <View style={styles.actionButtonIcon}> </View>
+      <View style={styles.actionButtonIcon}><Text style={styles.icon}>+</Text> </View>
     )
   }
 
@@ -105,32 +133,13 @@ class UiActionButton extends Component {
           onPressIn={this.onPress.bind(this)}
           onPressOut={this.onRelease.bind(this)}
           style={[styles.wrapper, localStyle, {elevation: this.state.elevation}]}>
-            <Text style={styles.icon}>+</Text>
+            <Animated.View style={[this.getAnimationStyle.bind(this), this.props.style]}>
+              {this.renderIcon.bind(this)}
+            </Animated.View>
         </TouchableHighlight>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-  },
-  actionButtonIcon: {
-    /*   height: 56,
-     width: 56,
-     borderRadius: 56,
-     backgroundColor: '#FF4081',*/
-
-  },
-  icon: {
-    textAlign: 'center',
-    color: '#FFFFFF',
-    fontSize: 24
-  }
-
-});
 
 module.exports = UiActionButton;

@@ -31,6 +31,11 @@ function getRandomNumber(min, max) {
 
 class AnimatedHeart extends Component {
 
+  static defaultProps = {
+    onComplete() {}
+  };
+
+
   constructor(props) {
     super(props);
     this.state = {

@@ -11,17 +11,13 @@
 'use strict';
 
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
-const typography = require('../../constants/typography');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const {
   Component,
-  StyleSheet,
   View,
   Dimensions,
   PropTypes,
-  TouchableHighlight,
   Text
   } = React;
 
@@ -103,53 +99,5 @@ class UiToolBar extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 8,
-    backgroundColor: '#fff',
-    width: width,
-//    paddingHorizontal : 16,
-    elevation: 2
-  },
-  tittleView: {
-    flex: 1,
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    paddingHorizontal: 10
-
-  },
-  titleText: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: 'black',
-    alignSelf: 'center'
-  },
-  leftIconWrapper: {
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-  rightIconWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 16
-  },
-  leftIcon: {
-    width: 35,
-    height: 35,
-    backgroundColor: 'grey',
-
-  },
-  rightIcon: {
-    width: 25,
-    height: 25,
-    backgroundColor: 'grey',
-
-  }
-});
 
 module.exports = UiToolBar;

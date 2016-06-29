@@ -1,15 +1,18 @@
+'use strict';
+
 const React = require('react-native');
 const Icon = require('../essence-icon/index');
 const text = require('../../constants/typography');
 //const BoldedText = require('');
 const colors = require('../../constants/colors');
+const styles = require('./styles');
+
 const {
   Component,
-  StyleSheet,
   Dimensions,
   View,
   PropTypes
-} = React;
+  } = React;
 
 const MAX_LENGTH = 20;
 
@@ -37,10 +40,10 @@ class UiHeader extends Component {
   };
 
   static defaultProps = {
-    titleColor: colors['e-text-blue-50'],
-    icoColor: colors['e-text-amber-700'],
-    backgroundColor: colors['e-text-amber-400'],
-    borderColor: colors['e-text-cyan-600'],
+    titleColor: '#E3F2FD',
+    icoColor: '#FFA000',
+    backgroundColor: '#FFCA28',
+    borderColor: '#00BCD4',
     opacity: 1
   };
 
@@ -50,6 +53,7 @@ class UiHeader extends Component {
       title: null
     };
   }
+
   componentWillMount() {
     this.props.onLoad && this.props.onLoad(UiHeader.BOX_HEIGHT);
   }
@@ -59,7 +63,7 @@ class UiHeader extends Component {
   }
 
   setTitle(msg) {
-    if(this.state.title === msg || this.props.title === msg) return;
+    if (this.state.title === msg || this.props.title === msg) return;
     this.setState({
       title: msg
     });
@@ -67,28 +71,28 @@ class UiHeader extends Component {
 
   renderText() {
     let title = this.state.title || this.props.title || '';
-    if(title.length > MAX_LENGTH) {
+    if (title.length > MAX_LENGTH) {
       title = title.substr(0, MAX_LENGTH) + '...';
     }
-    if(title === '') return;
+    if (title === '') return;
     let titleColor = this.props.titleColor;
     let textStyle = this.props.titleStyle || {};
     textStyle.color = titleColor;
-    if(this.props.backgroundColor) {
-      textStyle.textShadowColor = colors['e-text-deep-orange-300'];
+    if (this.props.backgroundColor) {
+      textStyle.textShadowColor = '#FFB74D';
     }
-    if(!this.props.titleBolded) {
+    if (!this.props.titleBolded) {
       return (
         <Text style={[styles.title, textStyle]}>{title}</Text>
       )
     }
     /*return (
-      <BoldedText style={[styles.title, textStyle]} text={title} />
-    );*/
+     <BoldedText style={[styles.title, textStyle]} text={title} />
+     );*/
   }
 
   renderIcon() {
-    if(!this.props.icon) return;
+    if (!this.props.icon) return;
     return (
       <View style={style.icon}>
         <Icon
@@ -96,7 +100,7 @@ class UiHeader extends Component {
           name={this.props.icon}
           color={this.props.iconColor}
           size="medium"
-          />
+        />
       </View>
     )
   }
@@ -105,23 +109,23 @@ class UiHeader extends Component {
     const { width } = Dimensions.get('window');
     let borderPosition = (this.props.borderPosition || 'bottom');
     let borderStyle = {};
-    if(this.props.border === true) {
+    if (this.props.border === true) {
       borderStyle.backgroundColor = this.props.borderColor;
     }
     let wrapperStyle = {
       width: width,
       backgroundColor: this.props.backgroundColor
     };
-    if(this.props.backgroundColor === 'false' || this.props.backgroundColor === false) {
+    if (this.props.backgroundColor === 'false' || this.props.backgroundColor === false) {
       delete wrapperStyle.backgroundColor;
     }
-    if(this.props.opacity) {
+    if (this.props.opacity) {
       wrapperStyle.opacity = this.props.opacity;
     }
-    if(borderPosition === 'bottom') {
+    if (borderPosition === 'bottom') {
       borderStyle.bottom = 0;
       borderStyle.borderBottomWidth = 1;
-      borderStyle.borderBottomColor = colors['e-text-deep-orange-100'];
+      borderStyle.borderBottomColor = '#FFE0B2';
     } else {
       borderStyle.top = 0;
       borderStyle.borderTop.Width = 0;
@@ -129,8 +133,8 @@ class UiHeader extends Component {
       borderStyle.backgroundColor = this.props.borderColor;
     }
     let borderView;
-    if(this.props.border !== false) {
-      borderView = <View style={[styles.border, borderStyle]} />
+    if (this.props.border !== false) {
+      borderView = <View style={[styles.border, borderStyle]}/>
     }
     return (
       <View style={[styles.wrapper, wrapperStyle]}>
@@ -145,40 +149,6 @@ class UiHeader extends Component {
   }
 }
 
-  const styles = StyleSheet.create({
-    wrapper: {
-      flex: 1,
-      flexDirection: 'row',
-      height: UiHeader.BOX_HEIGHT
-    },
-    // lower border
-    border: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      height: 2
-    },
-    box: {
-      flex: 1,
-      flexDirection: 'row',
-      flexWrap: 'nowrap',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 5
-    },
-    title: {
-      fontSize: 26,
-      textShadowRadius: 1,
-      textShadowOffset: {
-        width: 0.5,
-        height: 0.5
-      }
-    },
-    icon: {
-      position: 'absolute',
-      left: SIZE.ICON_PADDING,
-      top: SIZE.ICON_PADDING
-    }
-  });
 
-  module.exports = UiHeader;
+
+module.exports = UiHeader;

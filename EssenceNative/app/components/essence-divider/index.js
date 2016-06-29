@@ -1,13 +1,12 @@
 'use strict';
 
 const React = require('react-native');
-const color = require('../../constants/colors')
+
 
 const {
   Component,
   View,
   PropTypes,
-  StyleSheet
   } = React;
 
 // static component heights
@@ -46,7 +45,7 @@ class UiDivider extends Component {
   static defaultProps = {
     size: 'thick',
     width: 'full',
-    color: color['e-background-indigo-400']
+    color: '#7E57C2'
   };
 
 // If width is a number, we are going to use it. Otherwise, we use flex.

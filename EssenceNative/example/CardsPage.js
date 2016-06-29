@@ -1,9 +1,6 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-/**
- * Created by zsoltmakai on 5/12/2016.
- */
 const Card = require('../app/components/essence-cards');
 
 import React, {
@@ -21,7 +18,7 @@ export default class CardsPage extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Card/>
+        <Card size={150} />
       </View>
     )
   }

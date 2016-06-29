@@ -1,12 +1,13 @@
 'use strict';
 
-const React = require('react-native');
+// lots of tweaking to be done until the animation is responding the they it's supped to
 
-const colors = require('../../constants/colors');
+const React = require('react-native');
+const styles = require('./styles');
+
 
 const {
   View,
-  StyleSheet,
   Component,
   PropTypes,
   PanResponder,
@@ -117,30 +118,32 @@ class UiSlider extends Component {
 
     };
     return (
-      <View style={styles.container}
-            enabled={!isDisabled}>
-        <View ref="slider" style={[styles.underSlider, {width: this.props.width}]}/>
-        <Animated.View
-          ref="coloredBg"
-          style={[styles.bgSlider, {
+      <View>
+        <View style={styles.container}
+              enabled={!isDisabled}>
+          <View ref="slider" style={[styles.underSlider, {width: this.props.width}]}/>
+          <Animated.View
+            ref="coloredBg"
+            style={[styles.bgSlider, {
                width: this.panBg
              }, sliderStyle ]}
 
-        />
-        <Animated.View
-          {...this.panResponder.panHandlers}
-          style={[{
+          />
+          <Animated.View
+            {...this.panResponder.panHandlers}
+            style={[{
                 transform: [
                   { scale: this.panScale },
                   { translateX: this.pan }
                 ]
               }, this.props.style]}>
-          <View
-            style={[styles.overSlider, sliderStyle]}>
-            {this.props.children}
-          </View>
-        </Animated.View>
+            <View
+              style={[styles.overSlider, sliderStyle]}>
+              {this.props.children}
+            </View>
+          </Animated.View>
 
+        </View>
       </View>
     );
   }
@@ -148,33 +151,6 @@ class UiSlider extends Component {
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    left: 20
-  },
-  overSlider: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-//    backgroundColor: colors['e-background-indigo-400']
-  },
-  bgSlider: {
-    position: 'absolute',
-    marginTop: 13,
-    height: 5,
-//    backgroundColor: colors['e-background-indigo-400']
-  },
-  underSlider: {
-    position: 'absolute',
-    marginTop: 13,
-    //  width: 265,
-    height: 5,
-    backgroundColor: colors['e-background-grey-400'],
-    left: 5
-  }
-
-});
 module.exports = UiSlider;
 
 /*

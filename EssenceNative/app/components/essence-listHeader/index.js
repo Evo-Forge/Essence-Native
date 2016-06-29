@@ -1,13 +1,12 @@
 'use strict';
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
+const styles = require('./styles');
 const colors = require('../../constants/colors');
 
 const {
   Component,
   View,
   PropTypes,
-  StyleSheet,
   Dimensions,
   Text
   } = React;
@@ -44,24 +43,6 @@ class ListHeader extends Component {
 
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 16
-  },
-  headerTitle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    fontSize: 13,
-    shadowColor: 'grey',
-    fontWeight: 'bold',
-    color: 'grey'
-  }
-});
 
 module.exports = ListHeader;
 

@@ -1,9 +1,6 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-/**
- * Created by zsoltmakai on 5/12/2016.
- */
 const Chip = require('../app/components/essence-chip');
 
 import React, {
@@ -39,7 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-
+    justifyContent: 'center'
   }
 });

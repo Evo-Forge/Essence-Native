@@ -1,7 +1,7 @@
 'use strict';
+
 const React = require('react-native');
-const helpers = require('../../constants/helpers');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const {
   Component,
@@ -10,8 +10,7 @@ const {
   ListView
   } = React;
 
-const ListItem = require('../essence-listItem/index'),
-  ListHeader = require('../essence-listHeader/index');
+
 
 class UiList extends Component {
 
@@ -59,9 +58,5 @@ class UiList extends Component {
     )
   }
 }
-
-const styles = {
-
-};
 
 module.exports = UiList;

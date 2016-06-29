@@ -1,7 +1,7 @@
-
 "use strict";
+
 const React = require('react-native');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 // SIZE
 const {
@@ -10,12 +10,13 @@ const {
   Component,
   PropTypes,
   Dimensions,
-  StyleSheet
 } = React;
+
 const SIZE = {
   BORDER_RADIUS: 18,
   INPUT_HORIZONTAL_MARGIN: 60
 };
+
 const COLOR = {
   "DEFAULT": "#cccccc",
   "PRIMARY": "#2196f3",
@@ -24,6 +25,7 @@ const COLOR = {
   "WARNING": "#ff9800",
   "DANGER": "#f44336"
 };
+
 class UiButton extends Component {
 
     static propTypes = {
@@ -40,7 +42,7 @@ class UiButton extends Component {
     };
 
     static defaultProps = {
-      borderColor: colors['e-text-cyan-A700'],
+      borderColor: '#00B8D4',
       textColor: 'white',
    // disabled: false,
       text: 'Button',
@@ -81,8 +83,8 @@ class UiButton extends Component {
         elevation;
       if(isDisabled) {
         backgroundColor = COLOR["DEFAULT"];
-        borderColor = colors['e-text-blue-200'];
-        textColor = colors['e-text-blue-900'];
+        borderColor = '#90CAF9';
+        textColor = '#0D47A1';
         elevation = 0;
       } else {
         backgroundColor = COLOR[this.props.type.toUpperCase()] || COLOR['DEFAULT'];
@@ -107,8 +109,8 @@ class UiButton extends Component {
         }
       }
 
-      let rippleColor = colors['e-text-cyan-100'];
-      rippleColor = colors['e-text-cyan-400'];
+      let rippleColor = '#B2EBF2';
+      rippleColor = '#26C6DA';
       let textStyle = {
         color: textColor,
         textShadowColor: 'grey'
@@ -133,36 +135,5 @@ class UiButton extends Component {
       );
     }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    borderRadius: 2,
-  //  borderWidth: 1,
-  //  alignSelf: 'center',
-    paddingTop: 0.5,
-    paddingBottom: 0
-
-  },
-  button: {
-    borderRadius: 2,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    alignSelf: 'center'
-  },
-  text: {
-    alignSelf: 'center',
-    fontSize: 18,
-    textShadowRadius: 1,
-    textShadowOffset: {
-      width: 0.5,
-      height: 0.5
-    }
-  }
-});
-
-
-
-
-
 
 module.exports = UiButton;

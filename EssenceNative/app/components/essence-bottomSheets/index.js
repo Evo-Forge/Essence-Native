@@ -3,11 +3,12 @@
 const React = require('react-native');
 const helpers = require('../../constants/helpers');
 const colors = require('../../constants/colors');
-const Button = require('../essence-button/index');
+const styles = require('./styles');
+
+
 
 const {
   Component,
-  StyleSheet,
   View,
   PropTypes,
   Dimensions,
@@ -15,8 +16,7 @@ const {
   TouchableHighlight
   } = React;
 
-const width = Dimensions.get('window').width,
-  OVERLAY_OPACITY = 0.4;
+const OVERLAY_OPACITY = 0.4;
 
 function getHeight() {
   return Dimensions.get('window').height;
@@ -168,81 +168,11 @@ class UiBottomSheets extends Component {
             style={[styles.sheetWrapper, {bottom: this.pan}]}>
             {this.renderContent()}
           </Animated.View>
-
       </View>
     )
   }
-
-
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    height: getHeight(),
-    width: width,
-    flex: 1
-  },
-  gridStyle: {},
-  listStyle: {},
-  sheetWrapper: {
-    position: 'absolute',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,' + (OVERLAY_OPACITY + 0.1) + ')',
-    backgroundColor: '#fff',
-    width: width,
-    marginTop: getHeight() * 0.66,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    overflow: 'hidden'
-  },
-  paddedStyle: {
-    padding: 16
-  },
-  overlay: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: width,
-    height: getHeight()
-  },
-  overlayBg: {
-    backgroundColor: '#000000'
-  }
-});
 
 module.exports = UiBottomSheets;
 
 
-/*
- bottomSheet should be written first
-
- toggleSheet() {
- this.refs.sheet.toggle();
- }
-
- render() {
-
-
- return (
-
- <BottomSheet
- ref="sheet"
- type="grid"
- style={styles.container}
- content={<View><Text>HI</Text></View>}
- >
- <TouchableHighlight style={{
- width: 50,
- height: 50,
- backgroundColor: 'yellow'
- }} onPress={this.toggleSheet.bind(this) }>
- <View />
- </TouchableHighlight>
- </BottomSheet>
-
- );
- }
- */

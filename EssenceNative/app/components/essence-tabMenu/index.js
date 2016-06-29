@@ -1,21 +1,18 @@
 'use strict';
 
 const React = require('react-native');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
 const UiTabItem = require('../essence-tabItem/index');
 
-const SIZE = {};
 
 const {
   Component,
-  StyleSheet,
   Dimensions,
   View,
   PropTypes
   } = React;
 
-const BACKGROUND_COLOR = 'bisque';
 
 class UiTabMenu extends Component {
   static BOX_HEIGHT = 70;
@@ -123,14 +120,5 @@ class UiTabMenu extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: 'row',
-    backgroundColor: BACKGROUND_COLOR,
-    position: 'absolute',
-    left: 0,
-    right: 0
-  }
-});
 
 module.exports = UiTabMenu;

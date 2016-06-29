@@ -1,9 +1,8 @@
 'use strict';
 
 const React = require('react-native');
-const colors = require('../../constants/colors');
+const styles = require('./styles');
 
-const BACKGROUND_COLOR = 'grey';
 
 const SIZE = {
   FOOTER_HEIGHT: 70
@@ -11,8 +10,6 @@ const SIZE = {
 
 const {
   Component,
-  StyleSheet,
-  Dimensions,
   View,
   PropTypes,
   TouchableHighlight,
@@ -65,7 +62,7 @@ class UiTabMenuItem extends Component {
       count = '99';
     }
     if (!this.props.active) {
-      localStyle.borderColor = this.state.isPressed ? 'lightgrey' : BACKGROUND_COLOR
+      localStyle.borderColor = this.state.isPressed ? 'lightgrey' : 'grey'
     }
     return (
       <View style={[styles.badge, localStyle]}>
@@ -88,7 +85,7 @@ class UiTabMenuItem extends Component {
     let inactiveBorder = 'lightgrey',
       activeBorder = 'darkgrey';
     if (!isActive) {
-      innerStyle.backgroundColor = this.state.isPressed ? 'lightgrey' : BACKGROUND_COLOR;
+      innerStyle.backgroundColor = this.state.isPressed ? 'lightgrey' : 'grey';
       innerStyle.borderBottomColor = activeBorder;
       const shadowStyle = {
         borderBottomColor: 'lightgrey'
@@ -125,59 +122,5 @@ class UiTabMenuItem extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  },
-  inner: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopWidth: 1,
-    borderBottomWidth: 1
-  },
-  bottomShadow: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 1,
-    borderBottomWidth: 1
-  },
-  text: {
-    marginTop: 2,
-    fontSize: 12,
-    color: 'brown',
-    textShadowRadius: 1,
-    textShadowColor: '#293b2f',
-    textShadowOffset: {
-      width: 0.5,
-      height: 0.5
-    }
-  },
-  icon: {
-    height: 50,
-    width: 50
-  },
-  badge: {
-    width: 16,
-    height: 16,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    backgroundColor: 'orange',
-    borderColor: BACKGROUND_COLOR,
-    borderRadius: 20,
-    position: 'absolute',
-    top: -4,
-    right: -5
-  },
-  badgeText: {
-    fontSize: 8,
-    color: 'black'
-  }
-});
 
 module.exports = UiTabMenuItem;

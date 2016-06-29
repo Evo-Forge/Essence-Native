@@ -1,8 +1,9 @@
 'use strict';
-const React = require('react-native');
-const colors = require('');
 
-const SIZE = {};
+const React = require('react-native');
+const styles = require('./styles');
+
+// not finished, might be redundant
 
 const {
   Component,

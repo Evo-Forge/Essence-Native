@@ -1,10 +1,12 @@
 'use strict';
 const React = require('react-native');
 
+// not finished, might be redundant in favor of a imported module
+
 const deviceScreen = Dimensions.get('window');
 const helpers = require('');
 const utils = require('');
-
+const styles = require('./styles');
 
 const {
   PanResponder,
