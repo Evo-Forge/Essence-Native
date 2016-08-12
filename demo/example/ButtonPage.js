@@ -1,15 +1,14 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-const Button = require('../app/components/essence-button');
+const Button = require('../../lib/components/Button/Button');
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
-  PropTypes
 } from 'react-native';
 
 
