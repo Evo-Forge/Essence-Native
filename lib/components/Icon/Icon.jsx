@@ -1,6 +1,6 @@
 
 const React = require('react-native');
-const Image = require('../Image/Image.jsx');
+const Image = require('../Image/Image.js');
 const styles = require('./styles');
 const COLORS = require('../../colors');
 

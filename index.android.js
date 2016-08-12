@@ -28,7 +28,7 @@ import Router from './demo/example/Router';
 
 const DRAWER_WIDTH = 300;
 
-import ChipPage from './demo/example/ChipPage';
+import TextfieldPage from './demo/example/TextfieldPage';
 
 
 
@@ -54,7 +54,7 @@ class EssenceNative extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        {this.renderMenu()}
+       <TextfieldPage/>
       </View>
 
     );

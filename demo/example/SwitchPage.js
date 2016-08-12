@@ -2,15 +2,14 @@
  * Created by zsoltmakai on 5/12/2016.
  */
 
-const Switch = require('../app/components/essence-switch');
+const Switch = require('../../lib/components/Switch/Switch');
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
-  PropTypes
 } from 'react-native';
 
 

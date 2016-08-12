@@ -1,25 +1,25 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-const TextArea = require('../app/components/essence-textArea');
+const Textfield = require('../../lib/components/Textfield');
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
   Dimensions,
-  PropTypes
 } from 'react-native';
 
 
-export default class TextAreaPage extends React.Component {
+export default class TextfieldPage extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-         <TextArea placeholder="Text area with 3 rows" numberOfLines={3}/>
-        <TextArea placeholder="Text Area with 5 rows" numberOfLines={5}/>
+         <Textfield placeholder="Text area with 3 rows" numberOfLines={3}/>
+        <Textfield placeholder="Text Area with 5 rows" numberOfLines={5}/>
       </View>
     )
   }

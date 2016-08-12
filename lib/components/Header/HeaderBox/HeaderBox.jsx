@@ -4,7 +4,7 @@ const React = require('react-native');
 const COLORS = require('../../../colors');
 const styles = require('./styles');
 const Icon = require('../../Icon/Icon.jsx');
-const Image = require('../../Image/Image.jsx');
+const Image = require('../../Image/Image.js');
 
 const {
   Component,

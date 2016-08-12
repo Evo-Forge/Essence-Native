@@ -2,15 +2,14 @@
  * Created by zsoltmakai on 5/12/2016.
  */
 
-const Snackbar = require('../app/components/essence-snackbar');
+const Snackbar = require('../../lib/components/Snackbar/Snackbar');
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+
+import {
   StyleSheet,
-  Text,
   View,
   Dimensions,
-  PropTypes,
   TouchableHighlight
 } from 'react-native';
 
