@@ -1,10 +1,11 @@
 /**
  * Created by zsoltmakai on 5/16/2016.
  */
-const ActionButton = require('../app/components/essence-actionButton');
+const ActionButton = require('../../lib/components/ActionButton/ActionButton');
 
-import React, {
-  Component,
+import React, { Component, PropTypes } from 'react';
+
+import {
   StyleSheet,
   Text,
   View,

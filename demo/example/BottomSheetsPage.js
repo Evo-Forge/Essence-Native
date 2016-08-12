@@ -1,15 +1,13 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-const BottomSheet = require('../app/components/essence-bottomSheets');
+const BottomSheet = require('../../lib/components/BottomSheets/BottomSheets');
+import React, { Component, PropTypes } from 'react';
 
-import React, {
-  Component,
+import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
-  PropTypes,
   TouchableHighlight
 } from 'react-native';
 
@@ -48,6 +46,6 @@ export default class BottomSheetsPage extends React.Component {
 const styles = StyleSheet.create({
   container: {
     height: 200,
-    marginBottom: 26
+
   }
 });

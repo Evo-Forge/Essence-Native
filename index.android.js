@@ -28,9 +28,12 @@ import Router from './demo/example/Router';
 
 const DRAWER_WIDTH = 300;
 
+import BottomSheetsPage from './demo/example/BottomSheetsPage';
+
+
 
 class EssenceNative extends Component {
-
+// the renderMenu is a work in progress
   renderMenu() {
     return (
       <ScrollView style={styles.menu}>
@@ -50,9 +53,10 @@ class EssenceNative extends Component {
 
   render() {
     return (
-      <View >
-        <DividerPage/>
+      <View style={{flex: 1}}>
+        <BottomSheetsPage/>
       </View>
+
     );
   }
 }
