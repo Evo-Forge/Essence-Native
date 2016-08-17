@@ -28,7 +28,7 @@ import Router from './demo/example/Router';
 
 const DRAWER_WIDTH = 300;
 
-import ToolBarPage from './demo/example/ToolBarPage';
+import TestingPage from './demo/example/TestingPage';
 
 
 
@@ -54,7 +54,7 @@ class EssenceNative extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-       <ToolBarPage/>
+       <TestingPage/>
       </View>
 
     );
