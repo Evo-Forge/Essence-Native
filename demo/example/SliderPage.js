@@ -1,15 +1,15 @@
 /**
  * Created by zsoltmakai on 5/16/2016.
  */
-const Slider = require('../app/components/essence-slider');
+const Slider = require('../../lib/components/Slider/Slider');
 
-import React, {
-  Component,
+import React, { Component, PropTypes } from 'react';
+
+import  {
   StyleSheet,
   Text,
   View,
   Dimensions,
-  PropTypes
 } from 'react-native';
 
 export default class SliderPage extends React.Component {
