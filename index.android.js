@@ -28,7 +28,7 @@ import Router from './demo/example/Router';
 
 const DRAWER_WIDTH = 300;
 
-import SliderPage from './demo/example/SliderPage';
+import BottomNavigationPage from './demo/example/BottomNavigationPage';
 
 
 
@@ -54,7 +54,7 @@ class EssenceNative extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-       <SliderPage/>
+       <BottomNavigationPage/>
       </View>
 
     );
