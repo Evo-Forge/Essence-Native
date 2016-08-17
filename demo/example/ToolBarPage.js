@@ -1,15 +1,15 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-const ToolBar = require('../app/components/essence-toolBar');
+const ToolBar = require('../../lib/components/Toolbar/Toolbar');
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
   Dimensions,
-  PropTypes
 } from 'react-native';
 
 

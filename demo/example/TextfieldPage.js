@@ -1,7 +1,7 @@
 /**
  * Created by zsoltmakai on 5/12/2016.
  */
-const Textfield = require('../../lib/components/Textfield');
+const Textfield = require('../../lib/components/Textfield/Textfield');
 
 import React, { Component } from 'react';
 
